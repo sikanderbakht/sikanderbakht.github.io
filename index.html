@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YOUR NAME – Mobile Engineer Portfolio</title>
+  <meta name="description" content="Senior Mobile Engineer portfolio – React Native, Android, iOS" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0d10; --card:#12161b; --muted:#9aa7b2; --text:#e7edf3; --brand:#6ee7ff; --chip:#1a2027; --accent:#b5f3ff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    body{background:linear-gradient(180deg,#0b0d10 0%, #0f141a 100%);color:var(--text);}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .avatar{width:56px;height:56px;border-radius:50%;border:2px solid var(--brand); background:linear-gradient(135deg,#17202a,#0e141a)}
+    .name{font-size:1.35rem;font-weight:700}
+    .role{font-size:0.95rem;color:var(--muted)}
+    nav a{margin-left:16px;font-weight:600;color:var(--text);opacity:.9}
+    nav a:hover{opacity:1}
+
+    .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center;margin:26px 0}
+    .card{background:var(--card);border:1px solid #1f2730;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:var(--chip);border:1px solid #27313c;color:var(--muted);padding:6px 10px;border-radius:999px;font-size:.8rem}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{background:linear-gradient(180deg,#14202a,#0d151c);border:1px solid #223241;padding:10px 14px;border-radius:10px;color:var(--text);font-weight:600}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(180deg,#0b3d4b,#082a33);border-color:#0d4b5d}
+
+    h2{margin:10px 0 12px;font-size:1.3rem}
+    .grid{display:grid;gap:16px}
+    .grid.projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .chip{display:inline-block;background:#17202a;border:1px solid #233041;padding:6px 10px;border-radius:999px;font-size:.78rem;color:var(--muted);margin:4px 6px 0 0}
+    .meta{color:var(--muted);font-size:.9rem}
+
+    .experience{display:grid;gap:16px}
+    .xp{position:relative;padding-left:18px}
+    .xp:before{content:"";position:absolute;left:4px;top:8px;width:6px;height:6px;background:var(--brand);border-radius:50%}
+
+    footer{margin:40px 0 20px;color:var(--muted);text-align:center}
+    .list-inline{display:flex;flex-wrap:wrap;gap:8px}
+    .nowrap{white-space:nowrap}
+    @media(max-width:880px){.hero{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Avatar"/>
+        <div>
+          <div class="name">YOUR NAME</div>
+          <div class="role">Senior Mobile Engineer • React Native · Android · iOS</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card">
+        <span class="badge">Open to Senior/Lead roles · Remote/Hybrid</span>
+        <h1 style="margin:10px 0 8px;font-size:1.8rem">I design & ship resilient mobile apps with delightful UX.</h1>
+        <p class="meta">Mobile engineer since 2016. React Native specialist with solid Android/iOS foundations. I build scalable architectures, automate releases (CI/CD + OTA), and lead teams to reliable, high‑quality launches.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="./YOUR_RESUME.pdf">Download Résumé</a>
+          <a class="btn" href="mailto:you@example.com">Contact</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Quick Stats</h2>
+        <ul class="meta" style="line-height:1.9">
+          <li><strong>8+ years</strong> in mobile dev</li>
+          <li><strong>React Native</strong> (TypeScript) · <strong>Android</strong> (Kotlin/Java)</li>
+          <li>OTA, Fastlane, GitHub Actions, AppCenter</li>
+          <li>Play Store/App Store releases · 99.5% crash‑free</li>
+          <li>Performance, offline‑first, a11y, analytics</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="grid">
+      <h2>Selected Projects</h2>
+      <div class="grid projects">
+        <!-- Project 1 -->
+        <article class="card">
+          <div class="meta">2023–2025 · FinTech Superapp</div>
+          <h3 style="margin:6px 0">Cross‑platform banking app</h3>
+          <p class="meta">React Native · TypeScript · Redux Toolkit · REST/GraphQL · AppCenter · Fastlane</p>
+          <ul style="margin:8px 0 0 16px; line-height:1.6">
+            <li>Architected offline‑first flows (RTK Query + SQLite), improving retention by <strong>+12%</strong>.</li>
+            <li>Set up CI/CD (GitHub Actions → TestFlight/Play); reduced release cycle from weekly to <strong>daily</strong>.</li>
+            <li>Crash‑free sessions consistently <strong>&gt;99.5%</strong> (Sentry).</li>
+          </ul>
+          <div class="meta" style="margin-top:10px">
+            <a href="#" aria-label="Case study">Case study</a>
+          </div>
+        </article>
+        <!-- Project 2 -->
+        <article class="card">
+          <div class="meta">2021–2023 · Media/Creator</div>
+          <h3 style="margin:6px 0">Audio streaming & social</h3>
+          <p class="meta">React Native · Native Modules (Android/iOS) · Deep Links · Notifications</p>
+          <ul style="margin:8px 0 0 16px; line-height:1.6">
+            <li>Built native audio pipeline with background playback & mini‑player.</li>
+            <li>Implemented deep linking and growth loops; session length up <strong>+25%</strong>.</li>
+            <li>Led 4 devs through agile sprints; shipped 10+ feature releases.</li>
+          </ul>
+        </article>
+        <!-- Project 3 -->
+        <article class="card">
+          <div class="meta">2018–2021 · E‑commerce</div>
+          <h3 style="margin:6px 0">Marketplace app</h3>
+          <p class="meta">React Native · Expo EAS · Stripe · Firebase · Analytics</p>
+          <ul style="margin:8px 0 0 16px; line-height:1.6">
+            <li>Payments, order tracking, and notifications for 50k MAU.</li>
+            <li>Improved TTI by <strong>−35%</strong> with lazy loading & memoization.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="experience card" style="margin-top:16px">
+      <h2>Experience</h2>
+      <div class="xp">
+        <div class="meta">2023–Present · Senior/Lead Mobile Engineer · Company</div>
+        <div>Guided mobile strategy, mentored engineers, owned releases and reliability. Partnered with design/backend/AI to ship multi‑tenant features.</div>
+      </div>
+      <div class="xp">
+        <div class="meta">2020–2023 · Senior React Native Engineer · Company</div>
+        <div>Delivered cross‑platform features, improved test coverage with Jest/Detox, introduced OTA updates.</div>
+      </div>
+      <div class="xp">
+        <div class="meta">2016–2020 · Mobile Engineer · Company</div>
+        <div>Android foundations (Kotlin/Java), iOS basics (Swift/Obj‑C), shipped multiple apps to stores.</div>
+      </div>
+    </section>
+
+    <section id="skills" class="card" style="margin-top:16px">
+      <h2>Skills</h2>
+      <div class="list-inline">
+        <span class="chip">React Native</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Android (Kotlin/Java)</span>
+        <span class="chip">iOS (Swift/Obj‑C basics)</span>
+        <span class="chip">Redux / RTK Query</span>
+        <span class="chip">Expo / EAS</span>
+        <span class="chip">Fastlane</span>
+        <span class="chip">GitHub Actions</span>
+        <span class="chip">Jest / Detox</span>
+        <span class="chip">Firebase / AppCenter</span>
+        <span class="chip">SQLite / Realm</span>
+        <span class="chip">GraphQL / REST</span>
+        <span class="chip">Play/App Store</span>
+        <span class="chip">Agile / Scrum</span>
+        <span class="chip">PostgreSQL</span>
+      </div>
+    </section>
+
+    <section id="contact" class="card" style="margin-top:16px">
+      <h2>Contact</h2>
+      <p class="meta">Email: <a href="mailto:you@example.com">you@example.com</a> · LinkedIn: <a href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener">@YOUR_LINKEDIN</a> · GitHub: <a href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener">@YOUR_GITHUB</a></p>
+      <p class="meta">Prefer a PDF? <a class="nowrap" href="./YOUR_RESUME.pdf">Download résumé</a>.</p>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> YOUR NAME — built with plain HTML/CSS on GitHub Pages.</div>
+    </footer>
+  </div>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
