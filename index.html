@@ -1,199 +1,963 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- upto 2 directory depth-->
+<html lang="en-US">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sikander Bakht – Senior Android Engineer Portfolio</title>
-  <meta name="description" content="Senior Android Engineer portfolio – Android, Kotlin, Jetpack Compose, MVVM, Modularization, CI/CD" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#0b0d10; --card:#12161b; --muted:#9aa7b2; --text:#e7edf3; --brand:#6ee7ff; --chip:#1a2027; --accent:#b5f3ff;}
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-    body{background:linear-gradient(180deg,#0b0d10 0%, #0f141a 100%);color:var(--text);}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1100px;margin:0 auto;padding:28px}
-    header{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .avatar{width:56px;height:56px;border-radius:50%;border:2px solid var(--brand); background:linear-gradient(135deg,#17202a,#0e141a)}
-    .name{font-size:1.35rem;font-weight:700}
-    .role{font-size:0.95rem;color:var(--muted)}
-    nav a{margin-left:16px;font-weight:600;color:var(--text);opacity:.9}
-    nav a:hover{opacity:1}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Self made portfolio of Sikander Bakht">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Sikander Bakht">
 
-    .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center;margin:26px 0}
-    .card{background:var(--card);border:1px solid #1f2730;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .badge{display:inline-flex;gap:8px;align-items:center;background:var(--chip);border:1px solid #27313c;color:var(--muted);padding:6px 10px;border-radius:999px;font-size:.8rem}
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-    .btn{background:linear-gradient(180deg,#14202a,#0d151c);border:1px solid #223241;padding:10px 14px;border-radius:10px;color:var(--text);font-weight:600}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{background:linear-gradient(180deg,#0b3d4b,#082a33);border-color:#0d4b5d}
+  <meta property="og:title" content="Sikander Bakht Portfolio" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://sikanderbakht.github.io/" />
+  <meta property="og:image"
+    content="https://storage.googleapis.com/artifacts.handwritten-328414.appspot.com/Privacy%20Policy/Ayush_portfolio_min.jpg" />
 
-    h2{margin:10px 0 12px;font-size:1.3rem}
-    .grid{display:grid;gap:16px}
-    .grid.projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .chip{display:inline-block;background:#17202a;border:1px solid #233041;padding:6px 10px;border-radius:999px;font-size:.78rem;color:var(--muted);margin:4px 6px 0 0}
-    .meta{color:var(--muted);font-size:.9rem}
+  <title>Sikander Bakht Portfolio</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&amp;display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&amp;display=swap" media="print"
+    onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&amp;display=swap" />
+  </noscript>
+  <link href="./css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="./css/bootstrap-icons/bootstrap-icons.css?ver=1.2.0" rel="stylesheet">
+  <link href="./css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="./css/aos.css?ver=1.2.0" rel="stylesheet">
+  <link href="./css/main.css?ver=1.2.0" rel="stylesheet">
+  <link href="./css/textAnimator.css?ver=1.2.0" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    .experience{display:grid;gap:16px}
-    .xp{position:relative;padding-left:18px}
-    .xp:before{content:"";position:absolute;left:4px;top:8px;width:6px;height:6px;background:var(--brand);border-radius:50%}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+    integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+  <noscript>
+    <style type="text/css">
+      [data-aos] {
+        opacity: 1 !important;
+        transform: translate(0) scale(1) !important;
+      }
+    </style>
+  </noscript>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
 
-    footer{margin:40px 0 20px;color:var(--muted);text-align:center}
-    .list-inline{display:flex;flex-wrap:wrap;gap:8px}
-    .nowrap{white-space:nowrap}
-    @media(max-width:880px){.hero{grid-template-columns:1fr}}
-  </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <img class="avatar" src="https://avatars.githubusercontent.com/sikanderbakht" alt="Avatar"/>
-        <div>
-          <div class="name">Sikander Bakht</div>
-          <div class="role">Senior Android Engineer · Kotlin · Jetpack Compose · MVVM · Modularization</div>
+
+<body id="top">
+  <div id="load"></div>
+  <header class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="header-nav" role="navigation">
+      <div class="container"><a class="link-dark navbar-brand site-title mb-0" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto me-2">
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#services">Skills</a></li>
+            <li class="nav-item"><a class="nav-link" href="#portfolio">Experience</a></li>
+            <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+            <li class="nav-item"><a class="nav-link" href="#experience">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonials">Awards</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
         </div>
       </div>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+    </nav>
+  </header>
+  <div class="page-content">
+    <div id="content">
+      <header>
+        <div class="cover bg-light">
+          <div class="container px-3">
+            <div class="row">
+              <div class="col-lg-6 p-2"><lottie-player id="firstLottie" class="img-fluid"
+                  src="https://assets3.lottiefiles.com/packages/lf20_m9fz64i8.json" background="transparent" speed="1"
+                  loop autoplay></lottie-player>
+              </div>
+              <div class="col-lg-6">
+                <div class="mt-5">
+                  <p class="lead text-uppercase mb-1">Hello!</p>
+                  <h1 class="intro-title marker ml3" data-aos="fade-left" data-aos-delay="50">I’m Sikander Bakht</h1>
+                  <p class="word" data-aos="fade-up" data-aos-delay="100" style="margin-bottom:50px"></p>
+                  <div class="social-nav" data-aos="fade-up" data-aos-delay="200">
+                    <nav role="navigation">
+                      <ul class="nav justify-content-left">
+                        <!--<li class="nav-item"><a class="nav-link" href="https://twitter.com/templateflip" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a></li>-->
+                        <li class="nav-item"><a class="nav-link" href="https://github.com/sikanderbakht" title="Github"
+                            target="_blank"><i class="fab fa-github"></i><span
+                              class="menu-title sr-only">GitHub</span></a></li>
+                        <li class="nav-item"><a class="nav-link"
+                            href="https://www.linkedin.com/in/sikander-bakht-410b4a97/" title="LinkedIn"
+                            target="_blank"><i class="fab fa-linkedin"></i><span
+                              class="menu-title sr-only">LinkedIn</span></a></li>
+                        <li class="nav-item"><a class="nav-link"
+                            href="https://play.google.com/store/apps/details?id=in.handwritten.android.splashscreen"
+                            title="HandWritten" target="_blank"><i class="fab fa-google-play"></i><span
+                              class="menu-title sr-only">Instagram</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://discord.gg/9TkbQXfT" title="Discord"
+                            target="_blank"><i class="fab fa-discord"></i><span
+                              class="menu-title sr-only">Instagram</span></a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                  <div class="mt-3" data-aos="fade-up" data-aos-delay="200"><a id="cvDownload2"
+                      class="btn btn-primary shadow-sm mt-1 hover-effect" href="#contact">Get In Touch <i
+                        class="fas fa-arrow-right"></i></a><a id="cvDownload"
+                      class="btn btn-primary shadow-sm mt-1 hover-effect">Download CV <i
+                        class="fas fa-download"></i></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wave-bg"></div>
+      </header>
+      <div class="section pt-4 px-3 px-lg-4" id="about">
+        <div class="container-narrow">
+          <div class="row">
+            <div class="col-md-6">
+              <h2 class="h4 my-2">Hello! I’m Sikander Bakht.</h2>
+              <p>I’m a Mobile Engineer with 8+ years of experience specializing in Android (Java, Kotlin, Jetpack
+                Compose) and React Native (TypeScript/JavaScript). I’ve contributed to leading fintech applications
+                including Emirates NBD, Liv Digital Bank, STC Pay, and Sadad Payment System, delivering secure,
+                scalable, and user-friendly solutions.<br><br>
 
-    <section class="hero">
-      <div class="card">
-        <span class="badge">Open to Senior/Lead Android roles · Dubai / Remote</span>
-        <h1 style="margin:10px 0 8px;font-size:1.8rem">Building banking & fintech apps serving 10M+ users</h1>
-        <p class="meta">Senior Android Engineer with 8+ years building scalable fintech and banking apps. Expert in Android SDK, Kotlin, and modern architectures (Jetpack Compose, MVVM), with proven impact on performance (95% faster builds) and apps serving millions. Skilled in CI/CD, TDD, and cross-functional leadership.</p>
-        <div class="cta">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="./Sikander_Bakht_Resume.pdf">Download Résumé</a>
-          <a class="btn" href="mailto:sikander.bin.ismail@gmail.com">Contact</a>
+                I bring expertise in mobile architecture and performance optimization—from digital onboarding flows and
+                NFC payments to modularization, test automation, and app modernization. My technical toolkit spans Clean
+                Architecture, MVVM, Hilt/Dagger2, Kotlin Coroutines, LiveData, Navigation Component, Redux, React
+                Navigation, and Native Modules.<br><br>
+
+                I’ve also worked on AI-driven applications, implementing features that enable apps to understand natural
+                language, provide smart responses, and create engaging user experiences.<br><br>
+
+                Always eager to connect, I enjoy collaborating on innovative mobile projects and exploring how
+                technology can deliver smarter, more impactful solutions.
+              </p>
+              <div class="row mt-3">
+                <div class="col-sm-2">
+                  <div class="pb-1">Email:</div>
+                </div>
+                <div class="col-sm-10">
+                  <div class="pb-1 fw-bolder">sikander.bin.ismail@gmail.com</div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="pb-1">Phone:</div>
+                </div>
+                <div class="col-sm-10">
+                  <div class="pb-1 fw-bolder">+971-505852690</div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="pb-1">Address:</div>
+                </div>
+                <div class="col-sm-10">
+                  <div class="pb-1 fw-bolder">Dubai, United Arab Emirates</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 offset-md-1 d-flex justify-content-center align-items-center" data-aos="fade-left"
+              data-aos-delay="100">
+              <lottie-player id="secondLottie" class="avatar img-fluid mt-2"
+                src="https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="1"
+                autoplay loop>
+              </lottie-player>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <h2>Quick Stats</h2>
-        <ul class="meta" style="line-height:1.9">
-          <li><strong>8+ years</strong> Android/Fintech development</li>
-          <li>Apps scaled to <strong>10M+ downloads</strong></li>
-          <li>Build optimization: <strong>40min → 2min</strong> (95% faster)</li>
-          <li>Crash-free rate: <strong>99–100%</strong> on production</li>
-          <li>Play Store ratings boosted to 4.5–4.6 ★</li>
-        </ul>
+      <div class="section px-3 px-lg-4 pt-5" id="services">
+        <div class="container-narrow">
+          <div class="text-center mb-5">
+            <h2 class="marker marker-center">My Skills</h2>
+          </div>
+          <div class="text-center">
+            <p class="mx-auto mb-3" style="max-width:600px"> I am a quick learner and specialize in multitude of skills
+            </p>
+          </div>
+          <div class="row py-3">
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="400"><img class="mb-2"
+                src="images/services/android.svg" width="96" height="96" alt="app development" />
+              <div class="h5">Android (Java / Kotlin)</div>
+            </div>
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="100"><img class="mb-2"
+                src="images/services/react.svg" width="96" height="96" alt="CI-CD" />
+              <div class="h5">React Native</div>
+            </div>
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="200"><img class="mb-2"
+                src="images/services/hardware.png" width="96" height="96" alt="graphic design" />
+              <div class="h5">UI Automation</div>
+            </div>
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="300"><img class="mb-2"
+                src="images/services/cicd.svg" width="96" height="96" alt="CI-CD" />
+              <div class="h5">CI/CD </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+      <div class="section px-3 px-lg-4 pt-5" id="skills">
+        <div class="container-narrow">
+          <div class="bg-light p-3">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">Android
+                      Development</span><span>95%</span></div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="100" data-aos-anchor=".skills-section" style="width: 95%" aria-valuenow="95"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">Kotlin/Java</span><span>90%</span>
+                  </div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="200" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">Android Jetpack</span><span>90%</span>
+                  </div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">Modularization</span><span>85%</span>
+                  </div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
 
-    <section id="projects" class="grid">
-      <h2>Key Projects</h2>
-      <div class="grid projects">
-        <article class="card">
-          <div class="meta">2024–Present · Liv Digital Bank</div>
-          <h3>Digital Banking Suite</h3>
-          <p class="meta">Kotlin · Jetpack Compose · Hilt · Modular Clean Architecture</p>
-          <ul>
-            <li>Leading 4 Android engineers, enforcing 90%+ test coverage.</li>
-            <li>Implemented digital account creation with Jumio SDK.</li>
-            <li>Improved Play Store rating from 3.4 → 4.6 ★.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <div class="meta">2023–2024 · Emirates NBD Bank</div>
-          <h3>Core Banking Apps</h3>
-          <p class="meta">Kotlin · Modularization · Jetpack Compose · Navigation</p>
-          <ul>
-            <li>Restructured codebase into feature/core modules; build time reduced 40min → 2min.</li>
-            <li>Integrated Jumio SDK for KYC/liveness checks.</li>
-            <li>Enabled multi-flavor logic across 5 banking apps.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <div class="meta">2019–2022 · STC Pay Bahrain</div>
-          <h3>Mobile Wallet & NFC Payments</h3>
-          <p class="meta">Kotlin · MVVM · Jetpack · NFC · Compose</p>
-          <ul>
-            <li>Launched NFC Tap & Go with Mastercard in 3 months.</li>
-            <li>Migrated Java → Kotlin; MVC → MVVM.</li>
-            <li>90%+ test coverage; 10M+ downloads, 4.5+ rating.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <div class="meta">2017–2019 · SADAD Payment App</div>
-          <h3>Payment Super App</h3>
-          <p class="meta">Android SDK · Kotlin · MVVM · Dynamic UI</p>
-          <ul>
-            <li>Integrated 200+ services; built dynamic API-driven UI.</li>
-            <li>Maintained 99–100% crash-free rate with 90%+ coverage.</li>
-            <li>Reduced app size by 40% via split builds per architecture.</li>
-          </ul>
-        </article>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">Kotlin
+                      Coroutines</span><span>85%</span>
+                  </div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">GitHub</span><span>90%</span>
+                  </div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 offset-md-2">
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">React Native</span><span>95%</span>
+                  </div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 95%" aria-valuenow="95"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span
+                      class="me-auto">TypeScript/JavaScript</span><span>85%</span></div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="500" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">Redux</span><span>85%</span></div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">React Hooks</span><span>90%</span>
+                  </div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">CI/CD</span><span>80%</span></div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 80%" aria-valuenow="80"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="py-1">
+                  <div class="d-flex text-small fw-bolder"><span class="me-auto">UI Automation</span><span>85%</span>
+                  </div>
+                  <div class="progress my-1">
+                    <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right"
+                      data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+      <div class="section px-2 px-lg-4 pt-5" id="portfolio">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2 class="marker marker-center">Professional Experience</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline-card timeline-card-primary card shadow-sm" data-aos="fade-right" data-aos-delay="50">
+              <a href="https://play.google.com/store/apps/details?id=in.redbus.android" style="text-decoration: none"
+                target="_blank">
+                <div class="card-body">
+                  <div class="h5 mb-1">Staff Software Engineer <span class="text-muted h6">at Nagarro MENA</span></div>
+              </a>
+              <div class="text-muted text-small mb-2">April, 2022 - Present</div>
+              <div>
+                At Nagarro, I work as a <strong>Staff Software Engineer</strong>, delivering high-impact mobile
+                solutions for clients in the
+                <strong>banking and fintech</strong> sector. My role involves leading end-to-end development across
+                native
+                <strong>Android (Java/Kotlin/Jetpack Compose)</strong> and cross-platform
+                <strong>React Native</strong> technologies, with a strong focus on
+                scalability, performance, and modular architecture.
+                <br><br>
 
-    <section id="experience" class="experience card" style="margin-top:16px">
-      <h2>Experience</h2>
-      <div class="xp">
-        <div class="meta">Apr 2022 – Present · Staff Software Engineer · Nagarro · Dubai, UAE</div>
-        <div>Led architecture and development for Emirates NBD, Liv Digital, Emirates Islamic. Modularized codebases, reduced build time 95%, introduced frontend automation with WebdriverIO + Appium, delivered Jumio-integrated onboarding journeys.</div>
-      </div>
-      <div class="xp">
-        <div class="meta">Nov 2019 – Apr 2022 · Senior Software Engineer · STC Bahrain</div>
-        <div>Migrated app to Kotlin and MVVM, launched Tap & Go with Mastercard, integrated 100+ APIs, maintained 99–100% crash-free, contributing to 10M+ downloads.</div>
-      </div>
-      <div class="xp">
-        <div class="meta">Jun 2017 – Nov 2019 · Software Engineer · SADAD Bahrain</div>
-        <div>Delivered 200+ payment services, built dynamic API-driven UI, migrated MVC → MVVM, ensured 90%+ coverage and 100% crash-free production.</div>
-      </div>
-      <div class="xp">
-        <div class="meta">Feb 2018 – Nov 2018 · Software Engineer · TetraHex · Lahore</div>
-        <div>Enhanced Hello Demo music-sharing app and built question-based learning system in Flask.</div>
-      </div>
-      <div class="xp">
-        <div class="meta">Jun 2017 – Aug 2017 · Software Engineer · OctapultPlatforms · Lahore</div>
-        <div>Developed aptitude-based Android app and backend APIs, mentored two interns.</div>
-      </div>
-      <div class="xp">
-        <div class="meta">Jul 2016 – Jan 2017 · Co-Facilitator · Makeistan · Lahore</div>
-        <div>Conducted workshops on Android, Scratch, Python; mentored students in Arduino projects.</div>
-      </div>
-    </section>
+                I have consulted for major clients including <strong>McKinsey, Emirates NBD, Emirates Islamic, and Riyad
+                  Bank</strong>,
+                contributing to projects that range from customer-facing mobile applications to large-scale digital
+                ecosystems.
+                <br><br>
 
-    <section id="skills" class="card" style="margin-top:16px">
-      <h2>Skills</h2>
-      <div class="list-inline">
-        <span class="chip">Android SDK</span>
-        <span class="chip">Kotlin / Java</span>
-        <span class="chip">Jetpack Compose</span>
-        <span class="chip">MVVM · Clean Architecture</span>
-        <span class="chip">Modularization</span>
-        <span class="chip">Dagger / Hilt</span>
-        <span class="chip">Coroutines</span>
-        <span class="chip">RxJava / RxKotlin</span>
-        <span class="chip">Paging2 / Navigation</span>
-        <span class="chip">JUnit / Espresso / Mockk</span>
-        <span class="chip">WebdriverIO / Appium / UI Automation</span>
-        <span class="chip">CI/CD · Gradle optimization</span>
-        <span class="chip">Firebase / Crashlytics</span>
-        <span class="chip">Git · SonarQube · Lint</span>
+                <strong>Key contributions include:</strong>
+                <ul>
+                  <li>Designed and implemented critical features including dashboard, notifications, account opening,
+                    and transaction workflows.</li>
+                  <li>Led modularization initiatives, reducing build times from ~45 minutes to ~1 minute, improving
+                    developer productivity.</li>
+                  <li>Conducted code reviews, pair programming, and mentorship to uphold code quality and share best
+                    practices.</li>
+                  <li>Implemented test automation pipelines (WebdriverIO, Appium, Jest, JUnit), increasing test coverage
+                    and QA efficiency.</li>
+                  <li>Achieved 90%+ unit test coverage and maintained 99% crash-free apps serving 1M+ active users.</li>
+                  <li>Collaborated with cross-functional teams (product, design, QA, backend) and client stakeholders to
+                    align technology with business goals.</li>
+                  <li>Advocated for and enforced Clean Architecture, MVVM, Compose, and scalable design patterns across
+                    teams.</li>
+                  <li>Documented systems and processes to accelerate onboarding of new team members and improve team
+                    knowledge sharing.</li>
+                </ul>
+                <hr class="my-4">
+                <h4 class="h6 text-uppercase text-muted mb-2">Key Skills</h4>
+                <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
+                  <li><span class="badge rounded-pill bg-light text-dark">Android</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Kotlin</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Java</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Android Jetpack</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Compose</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">MVVM</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Clean Architecture</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Navigation Component</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Kotlin Coroutines</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Hilt / Dagger</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Retrofit</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Modularization</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Deep Linking</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">React Native</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">TypeScript</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">JavaScript</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Redux</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">React Hooks</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">WebdriverIO</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Appium</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Jest</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">JUnit</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">GitHub</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Jira</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">SonarQube</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Lint</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-card timeline-card-primary card shadow-sm" data-aos="fade-right" data-aos-delay="125">
+            <div class="card-body">
+              <div class="h5 mb-1">Senior Software Engineer <span class="text-muted h6">at STC Pay</span></div>
+              <div class="text-muted text-small mb-2">November 2019 – April 2022</div>
+              <div>
+                At STC Pay, I worked on the company’s flagship <em>mobile wallet application</em> from the ground up,
+                playing a key role in shaping one of the leading digital payment platforms in Bahrain and KSA. My
+                responsibilities covered building core payment features, leading critical integrations, and ensuring the
+                app’s performance, scalability, and reliability.
+                <br><br>
+                <strong>Key contributions include:</strong>
+                <ul>
+                  <li>Developed core features including signup, login, P2P payments, virtual cards, and 3rd-party
+                    payment integrations.</li>
+                  <li>Integrated 100+ payment services with a backend-driven UI, enabling new services to be added
+                    without client-side changes.</li>
+                  <li>Led the NFC Tap &amp; Pay implementation in collaboration with Mastercard, handling wallet
+                    initialization, encryption, and secure key management to enable payments even when the app was
+                    closed. Delivered end-to-end implementation and testing within 3 months.</li>
+                  <li>Migrated the entire codebase from Java to Kotlin, improving code readability, maintainability, and
+                    performance.</li>
+                  <li>Refactored the app architecture using MVVM, modularization, and Android Jetpack, improving
+                    performance and scalability.</li>
+                  <li>Achieved 90%+ unit test coverage with JUnit and Mockito, ensuring stability with a 98% crash-free
+                    rate.</li>
+                  <li>Contributed to the app’s success, achieving a 4.7★ rating on app stores and scaling to hundreds of
+                    thousands of active users.</li>
+                  <li>Built and launched the STC Pay Merchant using React Native, providing merchants with a simple and
+                    reliable way to receive customer payments.</li>
+                  <li>Collaborated with cross-functional teams (product, QA, backend, and business stakeholders) to
+                    deliver secure, convenient, and feature-rich digital payment experiences.</li>
+                </ul>
+                <hr class="my-4">
+                <h4 class="h6 text-uppercase text-muted mb-2">Key Skills</h4>
+                <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
+                  <li><span class="badge rounded-pill bg-light text-dark">Android</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Kotlin</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Java</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Android Jetpack</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Compose</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">MVVM</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Clean Architecture</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Navigation Component</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Kotlin Coroutines</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Hilt / Dagger</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Retrofit</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Modularization</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Deep Linking</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">React Native</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">TypeScript</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">JavaScript</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Redux</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">React Hooks</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">WebdriverIO</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Appium</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Jest</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">JUnit</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">GitHub</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Jira</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">SonarQube</span></li>
+                  <li><span class="badge rounded-pill bg-light text-dark">Lint</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-card timeline-card-primary card shadow-sm" data-aos="fade-right" data-aos-delay="50">
+              <div class="card-body">
+                <div class="h5 mb-1">Software Engineer <span class="text-muted h6">at SADAD, Bahrain</span></div>
+                <div class="text-muted text-small mb-2">June, 2017 - November, 2019</div>
+                <div>
+                  At SADAD, I worked as a <strong>Software Engineer</strong>, contributing to the development of the
+                  SADAD Payment Android/iOS mobile application. SADAD is a one-stop payment platform in Bahrain
+                  offering over 180+ services, including mobile recharge, bill payments, and other financial services.
+                  <br><br>
+          
+                  My role focused on improving app performance, refactoring, and implementing robust architectures. 
+                  <br><br>
+                  <strong>Key contributions include:</strong>
+                  <ul>
+                    <li>Refactored the SADAD payment app codebase, migrating from Java to Kotlin for
+                      improved readability, maintainability, and leveraging Kotlin's expressive syntax.</li>
+                    <li>Upgraded the application architecture from MVC to MVVM and implemented Android Jetpack components.</li>
+                    <li>Enhanced backend integration by replacing OkHttp API calls with Retrofit calls.</li>
+                    <li>Implemented backend-driven UI for common services, reducing redundant UI development for 180+ services.</li>
+                    <li>Achieved 100% crash-free app through robust error handling, thorough testing, and proactive issue resolution.</li>
+                    <li>Wrote unit tests achieving 85%+ coverage, ensuring application reliability and stability.</li>
+                    <li>Collaborated closely with backend and iOS teams for seamless feature integration and cross-platform consistency.</li>
+                    <li>Participated in multiple POCs exploring new fintech applications, driving innovation within the team.</li>
+                  </ul>
+                  <hr class="my-4">
+                  <h4 class="h6 text-uppercase text-muted mb-2">Key Skills</h4>
+                  <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
+                    <li><span class="badge rounded-pill bg-light text-dark">Android</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Java</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Kotlin</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Android Jetpack</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">MVVM</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Clean Architecture</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Retrofit</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Kotlin Coroutines</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">JUnit</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Mocka</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">GitHub</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Jira</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Agile</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">SonarQube</span></li>
+                    <li><span class="badge rounded-pill bg-light text-dark">Lint</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <section id="contact" class="card" style="margin-top:16px">
-      <h2>Contact</h2>
-      <p class="meta">Dubai, United Arab Emirates · <span class="nowrap">+971 50 585 2690</span></p>
-      <p class="meta">Email: <a href="mailto:sikander.bin.ismail@gmail.com">sikander.bin.ismail@gmail.com</a> · LinkedIn: <a href="https://www.linkedin.com/in/sikander-bakht-410b4a97" target="_blank" rel="noopener">LinkedIn</a> · GitHub: <a href="https://github.com/sikanderbakht" target="_blank" rel="noopener">GitHub</a></p>
-      <p class="meta">Résumé: <a class="nowrap" href="./Sikander_Bakht_Resume.pdf">Download PDF</a></p>
-    </section>
+    <div class="section px-3 px-lg-4 pt-5" id="experience">
+      <div class="container-narrow">
+        <div class="text-center mb-5">
+          <h2 class="marker marker-center">Projects</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-3" data-aos="fade-right" data-aos-delay="100">
+              <div class="card-header px-3 py-2">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h3 class="h5 mb-1">Full Stack Android Application</h3>
+                    <div class="text-muted text-small">Self Made</div>
+                  </div><img src="images/services/app-development.svg" width="48" height="48" alt="app development" />
+                </div>
+              </div>
+              <div class="card-body px-3 py-2">
+                <p>The personal weekend project that became a top keyword ranking application in Google Play with 25k+
+                  downloads and 100+ daily active users.<br><br> With this application, the user can convert text to
+                  handwritten copy simply by typing or pasting words (Text to handwriting). The fastest way to finish
+                  work is by reducing the time it takes to write.</p>
+                <p>Kotlin is used in the Android development process with MVVM architecture, and python flask is used
+                  for the backend, running on the Google Cloud Platform.<br><br>Designed an algorithm that generates
+                  real handwriting on page by combining input letter by letter. </p>
+                <div data-aos="fade-up">
+                  <nav role="navigation">
+                    <ul class="nav justify-content-center">
+                      <li class="nav-item"><a class="nav-link" href="https://github.com/sikanderbakht/Handwritten"
+                          title="Github" target="_blank"><i class="fab fa-github"></i><span
+                            class="menu-title sr-only">GitHub</span></a></li>
+                      <li class="nav-item"><a class="nav-link"
+                          href="https://play.google.com/store/apps/details?id=in.handwritten.android.splashscreen"
+                          title="HandWritten" target="_blank"><i class="fab fa-google-play"></i><span
+                            class="menu-title sr-only">Instagram</span></a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3" data-aos="fade-left" data-aos-delay="200">
+              <div class="card-header px-3 py-2">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h3 class="h5 mb-1">Virtual OS for visually impaired
+                    </h3>
+                    <div class="text-muted text-small">BTech mini project</div>
+                  </div><img src="images/services/ui-ux.svg" width="48" height="48" alt="Web application" />
+                </div>
+              </div>
+              <div class="card-body px-3 py-2">
+                <p>Built a Demo Operating system using Java, servlets and web scrapping which is fully compatible to be
+                  used by virtually imparted using voice and sound</p>
+                <p>
+                  The web-app has all essential features such as:<br>
+                  1. Virtual Assistant<br>
+                  2. Email<br>
+                  3. Memo<br>
+                  4. Contacts<br>
+                  5. Entertainment (Sudoku)<br>
+                  6. Timer<br><br><br><br><br>
+                </p>
 
-    <footer>
-      <div>© <span id="y"></span> Sikander Bakht — Android Engineer Portfolio on GitHub Pages.</div>
+                <div data-aos="fade-up">
+                  <nav role="navigation">
+                    <ul class="nav justify-content-center">
+                      <li class="nav-item"><a class="nav-link"
+                          href="https://github.com/sikanderbakht/Virtual-OS-for-Visually-impaired" title="Github"
+                          target="_blank"><i class="fab fa-github"></i><span
+                            class="menu-title sr-only">GitHub</span></a></li>
+                      <li class="nav-item"><a class="nav-link"
+                          href="https://storage.googleapis.com/artifacts.handwritten-328414.appspot.com/Portfolio/MiniProjectReport.pdf"
+                          title="pdf" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span
+                            class="menu-title sr-only">Documentation</span></a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3" data-aos="fade-right" data-aos-delay="200">
+              <div class="card-header px-3 py-2">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h3 class="h5 mb-1">Body posture detection and correction system</h3>
+                    <div class="text-muted text-small">Internet of things</div>
+                  </div><img src="images/services/hardware.png" width="48" height="48" alt="web design" />
+                </div>
+              </div>
+              <div class="card-body px-3 py-2">
+                <p>Built a real time human body posture detection and correction system using accelerometer sensor and
+                  NodeMCU (ESP8266). Also, built a mobile app to caution the user in case his/her posture is incorrect.
+                </p>
+                <p>Created the wearable device smart enough to detect the body posture and indicate if there are any
+                  faulty movements by the user. App to track real time activity of users posture. </p>
+                <p>Postulated an algorith to analyze the sensor readings connected in the different parts of the body.
+                  The changes occuring in different directions are detected using accelerometers i.e by calculating the
+                  readings of each axes.</p>
+                <div data-aos="fade-up">
+                  <nav role="navigation">
+                    <ul class="nav justify-content-center">
+                      <li class="nav-item"><a class="nav-link"
+                          href="https://github.com/sikanderbakht/Human-Body-Posture-Detection-Correctness-System"
+                          title="Github" target="_blank"><i class="fab fa-github"></i><span
+                            class="menu-title sr-only">GitHub</span></a></li>
+                      <li class="nav-item"><a class="nav-link"
+                          href="https://storage.googleapis.com/artifacts.handwritten-328414.appspot.com/Portfolio/IOT_Project.pdf"
+                          title="research pdf" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span
+                            class="menu-title sr-only">Documentation</span></a></li>
+                      <li class="nav-item"><a class="nav-link"
+                          href="https://storage.googleapis.com/artifacts.handwritten-328414.appspot.com/Portfolio/IOT_Presentation.pptx"
+                          title="research ppt" target="_blank"><i class="fa fa-file-powerpoint-o"
+                            aria-hidden="true"></i><span class="menu-title sr-only">Documentation</span></a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3" data-aos="fade-left" data-aos-delay="400">
+              <div class="card-header px-3 py-2">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h3 class="h5 mb-1">Automating android Maintenance processt</h3>
+                    <div class="text-muted text-small">Ongoing project</div>
+                  </div><img src="images/services/full-stack.svg" width="48" height="48" alt="full stack" />
+                </div>
+              </div>
+              <div class="card-body px-3 py-2">
+                <p>To Improve the app maintenance process by automation which helps reviewer and developers to quickly
+                  release the bug fixes (Automatic bug assign) therefore reducing the #Days to finish the complete
+                  rollout
+                  <br>Automation will be responsible for getting corrupt line number and file from stack trace and
+                  informing to developer
+                <div class=""><a>
+                    <figure class="portfolio-item"><img width="400" height="300" src="awards/9.png"
+                        data-bp="awards/9.png" />
+                    </figure>
+                  </a></div>
+                </p>
+
+                <div data-aos="fade-up">
+                  <nav role="navigation">
+                    <ul class="nav justify-content-center">
+                      <li class="nav-item"><a class="nav-link"
+                          href="https://storage.googleapis.com/artifacts.handwritten-328414.appspot.com/Portfolio/Automating%20android%20Maintenance%20process.pdf"
+                          title="proposed system" target="_blank"><i class="fa fa-file-powerpoint-o"
+                            aria-hidden="true"></i><span class="menu-title sr-only">Documentation</span></a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section px-3 px-lg-4 pt-5" id="testimonials">
+      <div class="container-narrow">
+        <div class="text-center mb-5">
+          <h2 class="marker marker-center">Awards & Recoginations</h2>
+        </div>
+
+        <div class="grid bp-gallery pb-3" data-aos="zoom-in-up" data-aos-delay="100">
+          <div class="grid-sizer"></div>
+          <div class="grid-item"><a>
+              <figure class="portfolio-item"><img src="awards/1.png" data-bp="awards/1.png" />
+                <figcaption>
+                  <h4>Rookie of the year 2019</h4>
+                </figcaption>
+              </figure>
+            </a></div>
+          <div class="grid-item"><a>
+              <figure class="portfolio-item"><img src="awards/2.jpg" data-bp="awards/2.jpg" />
+                <figcaption>
+                  <h4 class="h5 mb-0">Titan of the quarter Q3</h4>
+                </figcaption>
+              </figure>
+            </a></div>
+          <div class="grid-item"><a>
+              <figure class="portfolio-item"><img src="awards/3.png" data-bp="awards/3.png" />
+                <figcaption>
+                  <h4 class="h5 mb-0">Rookie Award</h4>
+                </figcaption>
+              </figure>
+            </a></div>
+          <div class="grid-item"><a>
+              <figure class="portfolio-item"><img src="awards/4.png" data-bp="awards/4.png" />
+                <figcaption>
+                  <h4 class="h5 mb-0">Spot award</h4>
+                </figcaption>
+              </figure>
+            </a></div>
+          <div class="grid-item"><a>
+              <figure class="portfolio-item"><img src="awards/5.png" data-bp="awards/5.png" />
+                <figcaption>
+                  <h4 class="h5 mb-0">Titan of the quarter 2020</h4>
+                </figcaption>
+              </figure>
+            </a></div>
+          <div class="grid-item"><a>
+              <figure class="portfolio-item"><img src="awards/6.png" data-bp="awards/6.png" />
+                <figcaption>
+                  <h4 class="h5 mb-0">Titan of the quarter 2021</h4>
+                </figcaption>
+              </figure>
+            </a></div>
+          <div class="grid-item"><a
+              href="https://play.google.com/store/apps/details?id=in.handwritten.android.splashscreen">
+              <figure class="portfolio-item"><img src="awards/7.png" data-bp="awards/7.png" />
+                <figcaption>
+                  <h4 class="h5 mb-0">20k+ download with SEO ranking 1 in 3 months</h4>
+                  <div>Personal weekend project</div>
+                </figcaption>
+              </figure>
+            </a></div>
+          <div class="grid-item"><a
+              href="https://play.google.com/store/apps/details?id=in.handwritten.android.splashscreen">
+              <figure class="portfolio-item"><img src="awards/8.png" data-bp="awards/8.png" />
+                <figcaption>
+                  <h4 class="h5 mb-0">20k+ download with SEO ranking 1 in 3 months</h4>
+                  <div>Personal weekend project</div>
+                </figcaption>
+              </figure>
+            </a></div>
+        </div>
+        <br>
+        <div id="borderdiv"></div><br><br>
+
+        <div class="row">
+          <div class="col-md-6 mb-5">
+            <div class="d-flex ms-md-3"><span><i class="fas fa-2x fa-quote-left"></i></span><span class="m-2">Fast,
+                adaptable, efficient, accurate and calm. Sikander had these traits which made him one of a kind intern.
+                It was a great experience mentoring Sikander. Sikander just needed an one liner and he was able to
+                chisel a marble into a masterpiece.<br><br>
+
+                We had worked together for 2 projects which involved considerable amount of geometrical mathematics for
+                GPS related data and programming. Sikander was able to translate the Mathematics into workable code. Be
+                it Android or Python, he was able to do learn and do stuff very quickly. Being fast allowed us to do a
+                lot of production grade software during his time as an intern. <br><br>
+
+                His fundamentals on data structures and algorithms allowed him to write vey optimised code for a couple
+                of tricky problem statements.
+
+                I would love to have Sikander in my team any day. </span></div>
+            <div class="d-flex justify-content-end align-items-end">
+              <div class="text-end me-2">
+                <div class="fw-bolder">Dinesh Shanmugam Chellappan</div>
+                <div class="text-small">Software Development Manager at Amazon Alexa UK</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-5">
+            <div class="d-flex ms-md-3"><span><i class="fas fa-2x fa-quote-left"></i></span><span class="m-2">Very
+                delighted to work with Sikander. He is very talented and passionate with thorough knowledge in Android
+                development from inside and out. Shows initiative with developing new ways of thinking to improve
+                projects.
+              </span></div>
+            <div class="d-flex justify-content-end align-items-end">
+              <div class="text-end me-2">
+                <div class="fw-bolder">Laxmappa Hugar</div>
+                <div class="text-small">Senior SDET / redBus / Go-MMT</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="section px-2 px-lg-4 pt-5" id="education">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="marker marker-center">Education</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-card timeline-card-primary card shadow-sm">
+            <div class="card-body">
+              <div class="h5 mb-1">The LNM Institute Of Information And Technology<span class="text-muted h6"> Bachelor
+                  of Technology in Computer science & communication Engineering</span></div>
+              <div class="text-muted text-small mb-2">Aug, 2015 - May 2019</div>
+              <div>
+                Bachelor of Technology in Computer science & communication Engineering<br>
+                Courses Include : Data Structures and Algorithms,Operating Systems, Computer Networks, Enterprise
+                Architecture, Software Engineering, Digital signal processing and Object oriented programming.
+              </div>
+            </div>
+          </div>
+          <div class="timeline-card timeline-card-primary card shadow-sm">
+            <div class="card-body">
+              <div class="h5 mb-1">St Joseph's co-ed school <span class="text-muted h6">XII Mathematics</span></div>
+              <div class="text-muted text-small mb-2">May 2015</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="section px-2 px-lg-4 pb-4 pt-5 mb-5" id="contact">
+      <div class="container-narrow">
+        <div class="text-center mb-5">
+          <h2 class="marker marker-center">Contact Me</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-6" data-aos="zoom-in">
+            <div class="bg-light my-2 p-3 pt-2">
+              <form action="https://formspree.io/xbjwnjow" method="POST">
+                <div class="form-group my-2">
+                  <label for="name" class="form-label fw-bolder">Name</label>
+                  <input class="form-control" type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group my-2">
+                  <label for="email" class="form-label fw-bolder">Email</label>
+                  <input class="form-control" type="email" id="email" name="_replyto" required>
+                </div>
+                <div class="form-group my-2">
+                  <label for="message" class="form-label fw-bolder">Message</label>
+                  <textarea class="form-control" style="resize: none;" id="message" name="message" rows="4"
+                    required></textarea>
+                </div>
+                <button class="btn btn-primary mt-2" type="submit">Send</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6" data-aos="fade-left">
+            <div class="mt-3 px-1">
+              <div class="h5">Let’s talk how I can help you!</div>
+              <p>If you like my work or just wanted to say hi then drop me a message using the contact form. </p>
+              <p>Or get in touch using my email, or my contact number.</p>
+              <p>See you!</p>
+            </div>
+            <div class="mt-53 px-1">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="pb-1">Email:</div>
+                </div>
+                <div class="col-sm-10">
+                  <div class="pb-1 fw-bolder">sikander.bin.ismail@gmail.com</div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="pb-1">Phone:</div>
+                </div>
+                <div class="col-sm-10">
+                  <div class="pb-1 fw-bolder">+91-8003236561</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="pt-4 pb-4 text-center bg-light">
+      <div class="container">
+        <div class="my-3">
+          <div class="h4">Sikander Bakht</div>
+          <p>Mobile Application Developer with knowledge of Flask backend system</p>
+          <div class="social-nav">
+            <nav role="navigation">
+              <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="https://github.com/sikanderbakht" title="Github"
+                    target="_blank"><i class="fab fa-github"></i><span class="menu-title sr-only">GitHub</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/sikander-bakht-410b4a97"
+                    title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i><span
+                      class="menu-title sr-only">LinkedIn</span></a></li>
+                <li class="nav-item"><a class="nav-link"
+                    href="https://play.google.com/store/apps/details?id=in.handwritten.android.splashscreen"
+                    title="HandWritten" target="_blank"><i class="fab fa-google-play"></i><span
+                      class="menu-title sr-only">Instagram</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://discord.gg/9TkbQXfT" title="Discord"
+                    target="_blank"><i class="fab fa-discord"></i><span class="menu-title sr-only">Instagram</span></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="text-small text-secondary">
+          <div class="mb-1">&copy; All rights reserved.</div>
+          <div>
+            Designed by Sikander Bakht</div>
+        </div>
+      </div>
     </footer>
   </div>
-  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+  </div>
+  <div id="scrolltop"><a class="btn btn-secondary" href="#top"><span class="icon"><i
+          class="fas fa-angle-up fa-x"></i></span></a></div>
+  <script src="./scripts/imagesloaded.pkgd.min.js?ver=1.2.0"></script>
+  <script src="./scripts/masonry.pkgd.min.js?ver=1.2.0"></script>
+  <script src="./scripts/BigPicture.min.js?ver=1.2.0"></script>
+  <script src="./scripts/purecounter.min.js?ver=1.2.0"></script>
+  <script src="./scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
+  <script src="./scripts/aos.min.js?ver=1.2.0"></script>
+  <script src="./scripts/main.js?ver=1.2.0"></script>
+  <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-1.2.6.min.js"></script>
+  <script src="./scripts/textAnimator.js?ver=1.2.0"></script>
+  <script>
+    LottieInteractivity.create({
+      player: '#secondLottie',
+      mode: "scroll",
+      actions: [
+        {
+          visibility: [0, 1.0],
+          type: "seek",
+          frames: [40, 240],
+        },
+      ]
+    });
+
+
+    document.onreadystatechange = function () {
+      var state = document.readyState
+      if (state == 'interactive') {
+        document.getElementById('content').style.visibility = "hidden";
+      } else if (state == 'complete') {
+        setTimeout(function () {
+          document.getElementById('interactive');
+          document.getElementById('load').style.visibility = "hidden";
+          document.getElementById('content').style.visibility = "visible";
+          LetterFlowingTextAnimator();
+          if (/iPhone/i.test(navigator.userAgent)) {
+            document.querySelector("#firstLottie").stop()
+          }
+        }, 1000);
+      }
+    }
+
+  </script>
 </body>
+
 </html>
