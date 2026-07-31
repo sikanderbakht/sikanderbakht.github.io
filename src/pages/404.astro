@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page not found — Sikander Bakht" description="This page could not be found.">
+  <section class="nf" data-theme="dark">
+    <div class="nf__glow" aria-hidden="true"></div>
+    <div class="container-page nf__inner">
+      <p class="eyebrow reveal">Error 404</p>
+      <h1 class="nf__title reveal">This screen<br /><em class="serif">doesn't</em> exist.</h1>
+      <p class="nf__sub reveal">
+        The page you're after moved or never shipped. Let's get you back.
+      </p>
+      <div class="nf__cta reveal">
+        <a href="/" class="btn btn-primary">Back home</a>
+        <a href="/#work" class="btn btn-ghost">View work</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .nf__glow {
+    position: absolute;
+    top: -20%;
+    left: 40%;
+    width: min(90vw, 800px);
+    height: 80vh;
+    background: radial-gradient(50% 50% at 50% 50%, var(--color-accent-soft), transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .nf__inner {
+    position: relative;
+  }
+  .nf__title {
+    margin-top: 1.2rem;
+    font-size: var(--text-hero);
+    line-height: 0.95;
+  }
+  .nf__title .serif {
+    font-size: 1.08em;
+  }
+  .nf__sub {
+    margin-top: 1.5rem;
+    max-width: 38ch;
+    color: var(--color-ink-soft);
+    font-size: 1.1rem;
+  }
+  .nf__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.2rem;
+  }
+</style>

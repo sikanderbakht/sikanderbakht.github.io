@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts — one neutral grotesk everywhere, a serif for accents */
+@import "@fontsource-variable/hanken-grotesk";
+@import "@fontsource/instrument-serif";
+
+/* ============================================================
+   Design tokens — light-first, editorial, alternating light/dark
+   sections (Trionn-style). Palette is near-monochrome; colour comes
+   from per-project brand tints (--tint).
+   ============================================================ */
+@theme {
+  /* Accent (used sparingly) */
+  --color-accent: #5b4df5;
+  --color-accent-deep: #3f33c0;
+
+  /* Signal hues */
+  --color-mint: #12a874;
+  --color-sun: #e0a021;
+  --color-coral: #f4602f;
+
+  /* Fonts */
+  --font-display: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+
+  /* Fluid display scale */
+  --text-hero: clamp(2.6rem, 1.2rem + 6vw, 6.5rem);
+  --text-display: clamp(2rem, 1.2rem + 3.4vw, 4rem);
+  --text-title: clamp(1.5rem, 1.1rem + 1.6vw, 2.4rem);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Layout */
+  --radius-card: 22px;
+}
+
+/* ---- Light theme (default) ---- */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #eae9e6;
+  --color-bg-raised: #f4f3f1;
+  --color-bg-elevated: #ffffff;
+  --color-bg-contrast: #17171a;
+  --color-ink-on-contrast: #f4f3f1;
+  --color-ink: #17171a;
+  --color-ink-soft: #55555c;
+  --color-ink-faint: #6b6b72;
+  --color-line: rgba(0, 0, 0, 0.11);
+  --color-line-strong: rgba(0, 0, 0, 0.2);
+  --color-accent-soft: rgba(91, 77, 245, 0.1);
+  --tint: var(--color-accent);
+}
+
+/* ---- Dark theme (alternating sections) ---- */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #101013;
+  --color-bg-raised: #1a1a1f;
+  --color-bg-elevated: #232329;
+  --color-bg-contrast: #f4f3f1;
+  --color-ink-on-contrast: #17171a;
+  --color-ink: #f0f0f2;
+  --color-ink-soft: #a6a6ae;
+  --color-ink-faint: #8a8a93;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-line-strong: rgba(255, 255, 255, 0.18);
+  --color-accent-soft: rgba(124, 113, 255, 0.16);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  letter-spacing: -0.006em;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Sections carry their own theme background so the page alternates */
+section[data-theme],
+footer[data-theme] {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+}
+
+/* ============================================================
+   Components
+   ============================================================ */
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 4rem);
+  }
+
+  /* small uppercase label — normal sans, not mono */
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: var(--tint);
+  }
+
+  .serif {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: 0;
+    font-style: italic;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color 0.35s, color 0.35s, border-color 0.35s, opacity 0.35s;
+    will-change: transform;
+  }
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-bg);
+  }
+  .btn-primary:hover {
+    opacity: 0.85;
+  }
+  .btn-ghost {
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-ink);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-ink);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.32rem 0.72rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--color-ink) 3%, transparent);
+    font-size: 0.76rem;
+    letter-spacing: 0.005em;
+    color: var(--color-ink-soft);
+  }
+}
+
+/* Grain — subtle, theme-agnostic via soft-light */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.028;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Custom cursor — mix-blend-difference so it flips over light/dark */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  pointer-events: none;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  mix-blend-mode: difference;
+}
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  background: #fff;
+}
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo);
+}
+.cursor-ring.is-hover {
+  width: 58px;
+  height: 58px;
+}
+
+/* Reveal primitives */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.js-ready .reveal {
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .cursor-dot, .cursor-ring, .grain { display: none !important; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
+
+.no-js .reveal { opacity: 1; transform: none; }

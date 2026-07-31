@@ -1,0 +1,85 @@
+---
+const year = new Date().getFullYear();
+const socials = [
+  { href: "mailto:sikander.bin.ismail@gmail.com", label: "Email" },
+  { href: "https://www.linkedin.com/in/sikander-bakht-410b4a97", label: "LinkedIn" },
+  { href: "https://github.com/sikanderbakht", label: "GitHub" },
+];
+---
+
+<footer class="site-footer" data-theme="dark">
+  <div class="container-page">
+    <div class="site-footer__top">
+      <a href="/#contact" class="site-footer__cta">
+        <span class="eyebrow">Available for select work</span>
+        <span class="site-footer__headline">Let's build something<br />worth shipping.</span>
+      </a>
+      <nav class="site-footer__links" aria-label="Social">
+        {socials.map((s) => (
+          <a href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener">
+            {s.label}
+            <span aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© {year} Sikander Bakht — Mobile Lead, Dubai</span>
+      <span>Built with Astro</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-line);
+    padding-block: clamp(3rem, 8vw, 6rem) 2rem;
+    margin-top: 6rem;
+  }
+  .site-footer__top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .site-footer__cta {
+    display: block;
+  }
+  .site-footer__headline {
+    display: block;
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-display);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+  }
+  .site-footer__links {
+    display: grid;
+    gap: 0.4rem;
+    min-width: 12rem;
+  }
+  .site-footer__links a {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--color-line);
+    color: var(--color-ink-soft);
+    transition: color 0.3s, padding-left 0.3s var(--ease-out-expo);
+  }
+  .site-footer__links a:hover {
+    color: var(--color-ink);
+    padding-left: 0.4rem;
+  }
+  .site-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-top: clamp(3rem, 8vw, 6rem);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--color-ink-faint);
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/Hero.astro";
+import Marquee from "../components/sections/Marquee.astro";
+import Metrics from "../components/sections/Metrics.astro";
+import Work from "../components/sections/Work.astro";
+import Approach from "../components/sections/Approach.astro";
+import Experience from "../components/sections/Experience.astro";
+import Skills from "../components/sections/Skills.astro";
+import Contact from "../components/sections/Contact.astro";
+import { person } from "../data/profile";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: person.name,
+  jobTitle: "Mobile Lead",
+  email: `mailto:${person.email}`,
+  telephone: person.phoneHref,
+  url: "https://sikanderbakht.github.io",
+  address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
+  sameAs: [person.linkedin, person.github],
+  knowsAbout: ["Android", "Kotlin", "React Native", "iOS", "Flutter", "Mobile Architecture", "Fintech"],
+};
+---
+
+<BaseLayout>
+  <Hero />
+  <Marquee />
+  <Metrics />
+  <Work />
+  <Approach />
+  <Experience />
+  <Skills />
+  <Contact />
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+</BaseLayout>

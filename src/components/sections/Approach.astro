@@ -1,0 +1,85 @@
+---
+import { approach } from "../../data/profile";
+---
+
+<section class="approach" data-theme="dark" id="approach" aria-labelledby="approach-title">
+  <div class="container-page">
+    <div class="approach__head reveal">
+      <p class="eyebrow">How I work</p>
+      <h2 id="approach-title" class="approach__title">
+        Senior engineering,<br />modern leverage.
+      </h2>
+      <p class="approach__intro">
+        I lead teams the way I write code — modular, tested, and increasingly
+        AI-accelerated. Here's what that looks like in practice.
+      </p>
+    </div>
+
+    <div class="approach__grid">
+      {
+        approach.map((pillar, i) => (
+          <article class="approach__card reveal">
+            <span class="approach__num">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="approach__card-title">{pillar.title}</h3>
+            <p class="approach__body">{pillar.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .approach {
+    padding-block: clamp(3rem, 7vw, 6rem);
+    scroll-margin-top: 80px;
+  }
+  .approach__head {
+    max-width: 46rem;
+    margin-bottom: 3rem;
+  }
+  .approach__title {
+    margin-top: 0.9rem;
+    font-size: var(--text-display);
+  }
+  .approach__intro {
+    margin-top: 1.2rem;
+    color: var(--color-ink-soft);
+    font-size: 1.05rem;
+    max-width: 50ch;
+  }
+  .approach__grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  .approach__card {
+    padding: 2rem;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-line);
+    background: var(--color-bg-raised);
+    transition: border-color 0.4s, transform 0.5s var(--ease-out-expo);
+  }
+  .approach__card:hover {
+    border-color: var(--color-line-strong);
+    transform: translateY(-4px);
+  }
+  .approach__num {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-accent);
+  }
+  .approach__card-title {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .approach__body {
+    margin-top: 0.8rem;
+    color: var(--color-ink-soft);
+    font-size: 0.96rem;
+  }
+  @media (min-width: 760px) {
+    .approach__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

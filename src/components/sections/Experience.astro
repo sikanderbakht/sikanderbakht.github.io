@@ -1,0 +1,122 @@
+---
+import { experience, education } from "../../data/profile";
+---
+
+<section class="exp" data-theme="light" id="experience" aria-labelledby="exp-title">
+  <div class="container-page">
+    <div class="exp__head reveal">
+      <p class="eyebrow">Experience</p>
+      <h2 id="exp-title" class="exp__title">A decade in fintech &amp; banking</h2>
+    </div>
+
+    <ol class="exp__timeline">
+      {
+        experience.map((role) => (
+          <li class="exp__role reveal">
+            <div class="exp__meta">
+              <span class="exp__period">{role.period}</span>
+              <span class="exp__loc">{role.location}</span>
+            </div>
+            <div class="exp__body">
+              <h3 class="exp__company">
+                {role.title} <span>· {role.company}</span>
+              </h3>
+              <p class="exp__summary">{role.summary}</p>
+              <ul class="exp__points">
+                {role.points.map((p) => <li>{p}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+      <li class="exp__role exp__role--edu reveal">
+        <div class="exp__meta">
+          <span class="exp__period">{education.period}</span>
+          <span class="exp__loc">{education.location}</span>
+        </div>
+        <div class="exp__body">
+          <h3 class="exp__company">{education.degree} <span>· {education.school}</span></h3>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<style>
+  .exp {
+    padding-block: clamp(3rem, 7vw, 6rem);
+    scroll-margin-top: 80px;
+  }
+  .exp__head {
+    margin-bottom: 3rem;
+  }
+  .exp__title {
+    margin-top: 0.9rem;
+    font-size: var(--text-display);
+  }
+  .exp__timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .exp__role {
+    display: grid;
+    gap: 0.6rem 2.5rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .exp__role:last-child {
+    border-bottom: 1px solid var(--color-line);
+  }
+  .exp__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: var(--color-ink-faint);
+  }
+  .exp__company {
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+    font-weight: 600;
+  }
+  .exp__company span {
+    color: var(--color-ink-soft);
+    font-weight: 500;
+  }
+  .exp__summary {
+    margin-top: 0.7rem;
+    color: var(--color-ink-soft);
+    max-width: 60ch;
+  }
+  .exp__points {
+    margin: 1.1rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.7rem;
+    max-width: 68ch;
+  }
+  .exp__points li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+  }
+  .exp__points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    opacity: 0.7;
+  }
+  @media (min-width: 820px) {
+    .exp__role {
+      grid-template-columns: 14rem 1fr;
+    }
+  }
+</style>

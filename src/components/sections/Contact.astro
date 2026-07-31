@@ -1,0 +1,77 @@
+---
+import { person } from "../../data/profile";
+---
+
+<section class="contact" data-theme="dark" id="contact" aria-labelledby="contact-title">
+  <div class="container-page">
+    <div class="contact__card reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-title" class="contact__title">
+        Have a hard mobile<br />problem? Let's talk.
+      </h2>
+      <p class="contact__sub">
+        Open to Mobile Lead roles and select consulting. Based in {person.location}.
+      </p>
+
+      <div class="contact__actions">
+        <a class="btn btn-primary" href={`mailto:${person.email}`} data-cursor>
+          {person.email}
+        </a>
+        <a class="btn btn-ghost" href={`tel:${person.phoneHref}`} data-cursor>
+          {person.phone}
+        </a>
+      </div>
+
+      <div class="contact__links">
+        <a href={person.linkedin} target="_blank" rel="noopener" data-cursor>LinkedIn ↗</a>
+        <a href={person.github} target="_blank" rel="noopener" data-cursor>GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding-block: clamp(3rem, 7vw, 6rem);
+    scroll-margin-top: 80px;
+  }
+  .contact__card {
+    position: relative;
+    padding: clamp(2rem, 5vw, 4.5rem);
+    border-radius: 28px;
+    border: 1px solid var(--color-line);
+    background:
+      radial-gradient(80% 120% at 100% 0%, var(--color-accent-soft), transparent 55%),
+      var(--color-bg-raised);
+    overflow: hidden;
+  }
+  .contact__title {
+    margin-top: 1rem;
+    font-size: var(--text-display);
+  }
+  .contact__sub {
+    margin-top: 1.2rem;
+    max-width: 44ch;
+    color: var(--color-ink-soft);
+  }
+  .contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.2rem;
+  }
+  .contact__links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--color-ink-soft);
+  }
+  .contact__links a {
+    transition: color 0.3s;
+  }
+  .contact__links a:hover {
+    color: var(--color-ink);
+  }
+</style>

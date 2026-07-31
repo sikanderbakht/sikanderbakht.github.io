@@ -1,0 +1,116 @@
+---
+import { person } from "../../data/profile";
+---
+
+<section class="hero" data-theme="dark" aria-labelledby="hero-title">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="container-page hero__inner">
+    <p class="eyebrow reveal">{person.role} · Dubai · {person.years} years</p>
+
+    <h1 id="hero-title" class="hero__title">
+      <span class="reveal">Mobile apps</span>
+      <span class="reveal">that banks <em class="serif">trust</em></span>
+      <span class="reveal">at scale.</span>
+    </h1>
+
+    <p class="hero__sub reveal">
+      I'm {person.name} — a Mobile Lead with {person.years} years building secure,
+      high-scale <strong>Android</strong> &amp; <strong>React Native</strong> apps
+      for fintech and digital banking. From digital onboarding and NFC payments to
+      modular architecture, atomic design systems, and AI-accelerated delivery.
+    </p>
+
+    <div class="hero__cta reveal">
+      <a href="/#work" class="btn btn-primary" data-cursor>View selected work</a>
+      <a href="/#contact" class="btn btn-ghost" data-cursor>Get in touch</a>
+    </div>
+  </div>
+
+  <a href="/#work" class="hero__scroll reveal" aria-label="Scroll to work">
+    <span>Scroll</span>
+    <span class="hero__scroll-line" aria-hidden="true"></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-top: 68px;
+    overflow: hidden;
+  }
+  .hero__glow {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(120vw, 1100px);
+    height: 80vh;
+    background: radial-gradient(50% 50% at 50% 50%, var(--color-accent-soft), transparent 70%);
+    filter: blur(30px);
+    pointer-events: none;
+  }
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+  }
+  .hero__title {
+    margin-top: 1.5rem;
+    font-size: var(--text-hero);
+    font-weight: 600;
+    line-height: 0.98;
+  }
+  .hero__title span {
+    display: block;
+  }
+  .hero__title .serif {
+    font-size: 1.08em;
+    line-height: 0.9;
+  }
+  .hero__sub {
+    max-width: 44rem;
+    margin-top: 2rem;
+    font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
+    color: var(--color-ink-soft);
+  }
+  .hero__sub strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.5rem;
+  }
+  .hero__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+  .hero__scroll-line {
+    width: 1px;
+    height: 42px;
+    background: linear-gradient(to bottom, var(--color-ink-faint), transparent);
+    animation: scrollpulse 2s var(--ease-in-out-quart) infinite;
+  }
+  @keyframes scrollpulse {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.4; transform-origin: top; }
+    50% { transform: scaleY(1); opacity: 1; transform-origin: top; }
+  }
+  @media (max-width: 640px) {
+    .hero__scroll { display: none; }
+  }
+</style>

@@ -1,0 +1,150 @@
+---
+import ProjectCard from "../ProjectCard.astro";
+import { projects, categories } from "../../data/projects";
+const filters = ["All", ...categories];
+---
+
+<section class="work" data-theme="light" id="work" aria-labelledby="work-title">
+  <div class="container-page">
+    <div class="work__head reveal">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2 id="work-title" class="work__title">Apps I've led &amp; shipped</h2>
+      </div>
+      <p class="work__intro">
+        Ten mobile products across banking, trading and payments — built with
+        Android &amp; React Native, most serving millions of users in regulated
+        markets.
+      </p>
+    </div>
+
+    <div class="work__filters" role="group" aria-label="Filter projects by category">
+      {
+        filters.map((f, i) => (
+          <button
+            class="work__filter"
+            data-filter={f}
+            aria-pressed={i === 0 ? "true" : "false"}
+            data-cursor
+          >
+            {f}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="work__grid" id="work-grid">
+      {projects.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .work {
+    padding-block: clamp(3rem, 7vw, 6rem);
+    scroll-margin-top: 80px;
+  }
+  .work__head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 3rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+  }
+  .work__title {
+    margin-top: 0.9rem;
+    font-size: var(--text-display);
+  }
+  .work__intro {
+    max-width: 32ch;
+    color: var(--color-ink-soft);
+    font-size: 0.98rem;
+  }
+  .work__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .work__filter {
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-soft);
+    transition: color 0.3s, border-color 0.3s, background-color 0.3s;
+  }
+  .work__filter:hover {
+    color: var(--color-ink);
+    border-color: var(--color-line-strong);
+  }
+  .work__filter[aria-pressed="true"] {
+    background: var(--color-ink);
+    color: var(--color-bg);
+    border-color: var(--color-ink);
+  }
+  .work__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .work__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1080px) {
+    .work__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  /* filtering states */
+  .work__grid :global(.pcard[hidden]) { display: none; }
+  .work__grid :global(.pcard.is-filtering) {
+    animation: card-in 0.5s var(--ease-out-expo) both;
+  }
+  @keyframes card-in {
+    from { opacity: 0; transform: scale(0.96) translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+</style>
+
+<script>
+  function initFilters() {
+    const section = document.getElementById("work");
+    if (!section) return;
+    const buttons = Array.from(section.querySelectorAll<HTMLButtonElement>(".work__filter"));
+    const cards = Array.from(section.querySelectorAll<HTMLAnchorElement>(".pcard"));
+    if (!buttons.length) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function apply(filter: string, push = true) {
+      buttons.forEach((b) =>
+        b.setAttribute("aria-pressed", String(b.dataset.filter === filter)),
+      );
+      cards.forEach((c) => {
+        const match = filter === "All" || c.dataset.category === filter;
+        c.hidden = !match;
+        if (match && !reduce) {
+          c.classList.remove("is-filtering");
+          void c.offsetWidth; // restart animation
+          c.classList.add("is-filtering");
+        }
+      });
+      const hash = filter === "All" ? " " : `#${filter.toLowerCase()}`;
+      if (push) history.replaceState(null, "", filter === "All" ? location.pathname : hash);
+    }
+
+    buttons.forEach((b) =>
+      b.addEventListener("click", () => apply(b.dataset.filter || "All")),
+    );
+
+    // restore from hash (e.g. #banking)
+    const fromHash = location.hash.replace("#", "");
+    const match = buttons.find((b) => (b.dataset.filter || "").toLowerCase() === fromHash);
+    if (match) apply(match.dataset.filter || "All", false);
+  }
+
+  initFilters();
+  document.addEventListener("astro:page-load", initFilters);
+</script>

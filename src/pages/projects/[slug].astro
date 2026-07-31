@@ -1,0 +1,486 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PhoneFrame from "../../components/PhoneFrame.astro";
+import { projects } from "../../data/projects";
+import { projectImage } from "../../lib/images";
+
+export function getStaticPaths() {
+  return projects.map((project, i) => {
+    const prev = projects[(i - 1 + projects.length) % projects.length];
+    const next = projects[(i + 1) % projects.length];
+    return { params: { slug: project.slug }, props: { project, prev, next } };
+  });
+}
+
+const { project, prev, next } = Astro.props;
+const cover = project.images[0];
+const coverImg = projectImage(project.slug, cover.file);
+const gallery = project.images.map((im) => ({ ...im, img: projectImage(project.slug, im.file) }));
+
+const title = `${project.name} — ${project.role} · Sikander Bakht`;
+const description = `${project.name} (${project.client}): ${project.tagline} ${project.overview}`.slice(0, 180);
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- ============ HERO ============ -->
+  <section class="phero" data-theme="dark" style={`--tint:${project.tint}`}>
+    <div class="phero__glow" aria-hidden="true"></div>
+    <div class="container-page phero__inner">
+      <div class="phero__text">
+        <a href="/#work" class="phero__back" data-cursor>← All projects</a>
+        <p class="eyebrow phero__eyebrow">{project.category} · {project.client}</p>
+        <h1 class="phero__title">{project.name}</h1>
+        <p class="phero__tagline">{project.tagline}</p>
+        <div class="phero__meta">
+          <span><b>Role</b>{project.role}</span>
+          {project.period && <span><b>Period</b>{project.period}</span>}
+          <span><b>Platform</b>{project.stack}</span>
+        </div>
+      </div>
+      <div class="phero__media" transition:name={`cover-${project.slug}`}>
+        <PhoneFrame src={coverImg} alt={cover.alt} eager width={300} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUICK FACTS ============ -->
+  {
+    project.facts.length > 0 && (
+      <section class="pfacts" data-theme="light" style={`--tint:${project.tint}`}>
+        <div class="container-page">
+          <dl class="pfacts__grid">
+            {project.facts.map((f) => (
+              <div class="pfacts__item reveal">
+                <dt class="pfacts__value">{f.value}</dt>
+                <dd class="pfacts__label">{f.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="pbody" data-theme="light" style={`--tint:${project.tint}`}>
+    <div class="container-page pbody__inner">
+      <p class="eyebrow reveal">Overview</p>
+      <p class="pbody__overview reveal">{project.overview}</p>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="pgallery" data-theme="light" aria-labelledby="gallery-title">
+    <div class="container-page">
+      <p class="eyebrow reveal" id="gallery-title">Screens</p>
+    </div>
+    <div class="pgallery__strip" role="list">
+      {
+        gallery.map((im, i) => (
+          <button
+            class="pgallery__item"
+            role="listitem"
+            data-full={im.img.src}
+            data-alt={im.alt}
+            data-index={i}
+            aria-label={`View ${im.alt} larger`}
+            data-cursor
+          >
+            <PhoneFrame src={im.img} alt={im.alt} width={260} />
+          </button>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ============ WHAT I DID ============ -->
+  <section class="pcontrib" data-theme="light" style={`--tint:${project.tint}`}>
+    <div class="container-page pcontrib__inner">
+      <div class="pcontrib__head reveal">
+        <p class="eyebrow">Contribution</p>
+        <h2 class="pcontrib__title">What I did</h2>
+      </div>
+      <ul class="pcontrib__list">
+        {
+          project.contributions.map((c) => (
+            <li class="pcontrib__item reveal">
+              <span class="pcontrib__check" aria-hidden="true">✓</span>
+              <span>{c}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ IMPACT ============ -->
+  {
+    project.impact && (
+      <section class="pimpact" data-theme="dark" style={`--tint:${project.tint}`}>
+        <div class="container-page">
+          <p class="eyebrow reveal">Impact</p>
+          <p class="pimpact__text reveal">{project.impact}</p>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- ============ STACK ============ -->
+  <section class="pstack" data-theme="dark">
+    <div class="container-page">
+      <p class="eyebrow reveal">Stack</p>
+      <ul class="pstack__chips reveal">
+        {project.tech.map((t) => <li class="chip">{t}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PREV / NEXT ============ -->
+  <section class="pnav" data-theme="dark">
+    <div class="container-page pnav__grid">
+      <a href={`/projects/${prev.slug}/`} class="pnav__link pnav__link--prev" data-cursor>
+        <span class="pnav__dir">← Previous</span>
+        <span class="pnav__name">{prev.name}</span>
+      </a>
+      <a href={`/projects/${next.slug}/`} class="pnav__link pnav__link--next" data-cursor>
+        <span class="pnav__dir">Next →</span>
+        <span class="pnav__name">{next.name}</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer">
+    <button class="lightbox__close" data-lb-close aria-label="Close">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" data-lb-prev aria-label="Previous">‹</button>
+    <img class="lightbox__img" id="lightbox-img" src="" alt="" />
+    <button class="lightbox__nav lightbox__nav--next" data-lb-next aria-label="Next">›</button>
+  </dialog>
+</BaseLayout>
+
+<style>
+  /* ---- Hero ---- */
+  .phero {
+    position: relative;
+    padding-top: 120px;
+    padding-bottom: clamp(2.5rem, 6vw, 5rem);
+    overflow: hidden;
+  }
+  .phero__glow {
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: min(90vw, 900px);
+    height: 90vh;
+    background: radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--tint) 55%, transparent), transparent 70%);
+    filter: blur(40px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .phero__inner {
+    position: relative;
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .phero__back {
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
+    transition: color 0.3s;
+  }
+  .phero__back:hover { color: var(--color-ink); }
+  .phero__eyebrow::before { background: var(--tint); }
+  .phero__title {
+    font-size: var(--text-hero);
+    line-height: 0.95;
+  }
+  .phero__tagline {
+    margin-top: 1.2rem;
+    font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.5rem);
+    color: var(--color-ink-soft);
+    max-width: 40ch;
+  }
+  .phero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2.2rem;
+  }
+  .phero__meta span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.98rem;
+  }
+  .phero__meta b {
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+  .phero__media {
+    justify-self: center;
+    width: min(62%, 240px);
+  }
+  @media (min-width: 900px) {
+    .phero__inner { grid-template-columns: 1.3fr 1fr; }
+    .phero__media { justify-self: end; width: min(100%, 260px); }
+  }
+
+  /* ---- Quick facts ---- */
+  .pfacts {
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+  }
+  .pfacts__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    margin: 0;
+    background: var(--color-line);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+  .pfacts__item {
+    background: var(--color-bg);
+    padding: 1.6rem;
+  }
+  .pfacts__value {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.8rem, 1.2rem + 2.4vw, 3rem);
+    letter-spacing: -0.03em;
+    color: var(--tint);
+  }
+  .pfacts__label {
+    margin: 0.4rem 0 0;
+    color: var(--color-ink-soft);
+    font-size: 0.9rem;
+  }
+  @media (min-width: 820px) {
+    .pfacts__grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* ---- Overview / body ---- */
+  .pbody { padding-block: clamp(2.5rem, 6vw, 5rem); }
+  .pbody__inner { max-width: 60rem; }
+  .pbody__overview {
+    margin-top: 1.2rem;
+    font-size: clamp(1.3rem, 1rem + 1.4vw, 2rem);
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+
+  /* ---- Gallery ---- */
+  .pgallery { padding-block: clamp(2rem, 4vw, 3.5rem); }
+  .pgallery__strip {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.5rem clamp(1.25rem, 5vw, 4rem);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+  }
+  .pgallery__strip::-webkit-scrollbar { display: none; }
+  .pgallery__item {
+    flex: 0 0 auto;
+    width: clamp(180px, 40vw, 230px);
+    scroll-snap-align: center;
+    border-radius: 40px;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .pgallery__item:hover { transform: translateY(-6px); }
+
+  /* ---- Contributions ---- */
+  .pcontrib { padding-block: clamp(2.5rem, 6vw, 5rem); }
+  .pcontrib__head { margin-bottom: 2.5rem; }
+  .pcontrib__title { margin-top: 0.8rem; font-size: var(--text-display); }
+  .pcontrib__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    max-width: 62rem;
+  }
+  .pcontrib__item {
+    display: flex;
+    gap: 1rem;
+    padding: 1.3rem 0;
+    border-top: 1px solid var(--color-line);
+    font-size: 1.05rem;
+    color: var(--color-ink-soft);
+  }
+  .pcontrib__check {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--tint) 18%, transparent);
+    color: var(--tint);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  /* ---- Impact ---- */
+  .pimpact { padding-block: clamp(3rem, 7vw, 6rem); }
+  .pimpact__text {
+    margin-top: 1.2rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 1.1rem + 2.4vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    max-width: 24ch;
+  }
+  .pimpact__text {
+    background: linear-gradient(120deg, var(--color-ink), color-mix(in srgb, var(--tint) 90%, var(--color-ink)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ---- Stack ---- */
+  .pstack { padding-block: clamp(2rem, 4vw, 3.5rem); }
+  .pstack__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 1.2rem 0 0;
+    padding: 0;
+  }
+
+  /* ---- Prev / next ---- */
+  .pnav { padding-block: clamp(2rem, 5vw, 4rem); }
+  .pnav__grid {
+    display: grid;
+    gap: 1px;
+    background: var(--color-line);
+    border-block: 1px solid var(--color-line);
+  }
+  .pnav__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2rem 0.5rem;
+    background: var(--color-bg);
+    transition: background-color 0.4s;
+  }
+  .pnav__link--next { text-align: right; align-items: flex-end; }
+  .pnav__link:hover { background: var(--color-bg-raised); }
+  .pnav__dir {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+  .pnav__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 1rem + 2vw, 2.2rem);
+    font-weight: 500;
+  }
+  @media (min-width: 700px) {
+    .pnav__grid { grid-template-columns: 1fr 1fr; }
+    .pnav__link { padding: 2.5rem 1.5rem; }
+  }
+
+  /* ---- Lightbox ---- */
+  .lightbox {
+    width: min(92vw, 520px);
+    max-height: 92vh;
+    margin: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    overflow: visible;
+  }
+  .lightbox::backdrop {
+    background: rgba(8, 8, 10, 0.85);
+    backdrop-filter: blur(8px);
+  }
+  .lightbox__img {
+    width: 100%;
+    height: auto;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 24px;
+    display: block;
+  }
+  .lightbox__close,
+  .lightbox__nav {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .lightbox__close:hover,
+  .lightbox__nav:hover { background: rgba(255, 255, 255, 0.22); }
+  .lightbox__close { top: -56px; right: 0; }
+  .lightbox__nav--prev { left: -60px; top: 50%; transform: translateY(-50%); }
+  .lightbox__nav--next { right: -60px; top: 50%; transform: translateY(-50%); }
+  @media (max-width: 700px) {
+    .lightbox__nav--prev { left: 8px; }
+    .lightbox__nav--next { right: 8px; }
+    .lightbox__nav { background: rgba(0, 0, 0, 0.5); }
+  }
+</style>
+
+<script>
+  function initLightbox() {
+    const dialog = document.getElementById("lightbox") as HTMLDialogElement | null;
+    const img = document.getElementById("lightbox-img") as HTMLImageElement | null;
+    if (!dialog || !img) return;
+
+    const items = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(".pgallery__item"),
+    );
+    if (!items.length) return;
+
+    let current = 0;
+    const show = (i: number) => {
+      current = (i + items.length) % items.length;
+      const el = items[current];
+      img.src = el.dataset.full || "";
+      img.alt = el.dataset.alt || "";
+    };
+
+    items.forEach((el, i) =>
+      el.addEventListener("click", () => {
+        show(i);
+        dialog.showModal();
+      }),
+    );
+
+    dialog.querySelector("[data-lb-close]")?.addEventListener("click", () => dialog.close());
+    dialog.querySelector("[data-lb-prev]")?.addEventListener("click", () => show(current - 1));
+    dialog.querySelector("[data-lb-next]")?.addEventListener("click", () => show(current + 1));
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (!dialog.open) return;
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
+    });
+  }
+
+  initLightbox();
+  document.addEventListener("astro:page-load", initLightbox);
+</script>
