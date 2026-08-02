@@ -89,11 +89,10 @@ export const projects: Project[] = [
       "Reduced build times from ~40 minutes to ~2 minutes and enabled independent, parallel squad delivery across the bank's app suite.",
     featured: true,
     images: [
-      { file: "enbdx-app-1.png", alt: "ENBD X dashboard screen", source: "real" },
-      { file: "enbdx-app-2.png", alt: "ENBD X accounts overview", source: "real" },
-      { file: "enbdx-app-3.png", alt: "ENBD X payments screen", source: "real" },
-      { file: "enbdx-app-4.png", alt: "ENBD X transfers screen", source: "real" },
-      { file: "enbdx-app-5.png", alt: "ENBD X insights screen", source: "real" },
+      { file: "cover.webp", alt: "ENBD X — all your banking in one place", source: "play-store" },
+      { file: "shot-1.webp", alt: "ENBD X accounts and cards", source: "play-store" },
+      { file: "shot-2.webp", alt: "ENBD X payments and transfers", source: "play-store" },
+      { file: "shot-3.webp", alt: "ENBD X wealth and insights", source: "play-store" },
     ],
   },
 
@@ -128,9 +127,10 @@ export const projects: Project[] = [
       "Strengthened release quality with unit tests and UI automation on critical onboarding steps, supported by crash monitoring.",
     ],
     images: [
-      { file: "cover.svg", alt: "Emirates Islamic app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
-      { file: "shot-1.svg", alt: "Emirates Islamic app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
-      { file: "shot-2.svg", alt: "Emirates Islamic app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
+      { file: "cover.webp", alt: "Emirates Islamic digital banking", source: "play-store" },
+      { file: "shot-1.webp", alt: "Emirates Islamic accounts", source: "play-store" },
+      { file: "shot-2.webp", alt: "Emirates Islamic payments", source: "play-store" },
+      { file: "shot-3.webp", alt: "Emirates Islamic onboarding", source: "play-store" },
     ],
   },
 
@@ -165,9 +165,10 @@ export const projects: Project[] = [
       "Improved reliability with focused unit tests for trading state and end-to-end coverage for buy/sell flows.",
     ],
     images: [
-      { file: "cover.svg", alt: "Liv app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
-      { file: "shot-1.svg", alt: "Liv app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
-      { file: "shot-2.svg", alt: "Liv app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
+      { file: "cover.webp", alt: "Liv — bank ahead of the curve", source: "play-store" },
+      { file: "shot-1.webp", alt: "Liv balance and quick actions", source: "play-store" },
+      { file: "shot-2.webp", alt: "Liv investing and trading", source: "play-store" },
+      { file: "shot-3.webp", alt: "Liv portfolio and insights", source: "play-store" },
     ],
   },
 
@@ -355,9 +356,10 @@ export const projects: Project[] = [
       "Contributed to a wallet with 10M+ downloads and a 4.5★ rating, maintaining 90%+ test coverage and 99%+ crash-free production releases.",
     featured: true,
     images: [
-      { file: "cover.svg", alt: "STC Pay app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
-      { file: "shot-1.svg", alt: "STC Pay app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
-      { file: "shot-2.svg", alt: "STC Pay app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
+      { file: "cover.webp", alt: "STC Pay — one app, takes you further", source: "play-store" },
+      { file: "shot-1.webp", alt: "STC Pay wallet and transfers", source: "play-store" },
+      { file: "shot-2.webp", alt: "STC Pay bill payments", source: "play-store" },
+      { file: "shot-3.webp", alt: "STC Pay cards and services", source: "play-store" },
     ],
   },
 
@@ -396,9 +398,10 @@ export const projects: Project[] = [
     impact:
       "Maintained 90%+ unit test coverage and 99%+ crash-free releases while cutting app size by nearly 40%.",
     images: [
-      { file: "cover.svg", alt: "Sadad app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
-      { file: "shot-1.svg", alt: "Sadad app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
-      { file: "shot-2.svg", alt: "Sadad app placeholder", temp: true, source: "generated" }, // TODO(IMAGE-REPLACE)
+      { file: "cover.png", alt: "Sadad — save cards and pay all billers", source: "play-store" },
+      { file: "shot-1.png", alt: "Sadad bill payments", source: "play-store" },
+      { file: "shot-2.png", alt: "Sadad services", source: "play-store" },
+      { file: "shot-3.png", alt: "Sadad wallet", source: "play-store" },
     ],
   },
 

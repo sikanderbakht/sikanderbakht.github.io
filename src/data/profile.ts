@@ -131,6 +131,17 @@ export const skillGroups: SkillGroup[] = [
       "Sentry · Crashlytics",
     ],
   },
+  {
+    title: "AI & Workflow",
+    items: [
+      "Claude Code skills / subagents",
+      "AI-assisted test generation",
+      "AI code review",
+      "Atomic design systems",
+      "Spec / plan-first delivery",
+      "MCP integrations",
+    ],
+  },
 ];
 
 export interface Pillar {

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import PhoneFrame from "../../components/PhoneFrame.astro";
+import Media from "../../components/Media.astro";
 import { projects } from "../../data/projects";
 import { projectImage } from "../../lib/images";
 
@@ -16,6 +16,8 @@ const { project, prev, next } = Astro.props;
 const cover = project.images[0];
 const coverImg = projectImage(project.slug, cover.file);
 const gallery = project.images.map((im) => ({ ...im, img: projectImage(project.slug, im.file) }));
+const prevImg = projectImage(prev.slug, prev.images[0].file);
+const nextImg = projectImage(next.slug, next.images[0].file);
 
 const title = `${project.name} — ${project.role} · Sikander Bakht`;
 const description = `${project.name} (${project.client}): ${project.tagline} ${project.overview}`.slice(0, 180);
@@ -23,7 +25,7 @@ const description = `${project.name} (${project.client}): ${project.tagline} ${p
 
 <BaseLayout title={title} description={description}>
   <!-- ============ HERO ============ -->
-  <section class="phero" data-theme="dark" style={`--tint:${project.tint}`}>
+  <section class="phero" data-theme="light" style={`--tint:${project.tint}`}>
     <div class="phero__glow" aria-hidden="true"></div>
     <div class="container-page phero__inner">
       <div class="phero__text">
@@ -38,7 +40,7 @@ const description = `${project.name} (${project.client}): ${project.tagline} ${p
         </div>
       </div>
       <div class="phero__media" transition:name={`cover-${project.slug}`}>
-        <PhoneFrame src={coverImg} alt={cover.alt} eager width={300} />
+        <Media src={coverImg} alt={cover.alt} eager class="phero__img" sizes="(min-width: 900px) 30rem, 90vw" />
       </div>
     </div>
   </section>
@@ -86,7 +88,7 @@ const description = `${project.name} (${project.client}): ${project.tagline} ${p
             aria-label={`View ${im.alt} larger`}
             data-cursor
           >
-            <PhoneFrame src={im.img} alt={im.alt} width={260} />
+            <Media src={im.img} alt={im.alt} class="pgallery__img" sizes="260px" />
           </button>
         ))
       }
@@ -116,7 +118,7 @@ const description = `${project.name} (${project.client}): ${project.tagline} ${p
   <!-- ============ IMPACT ============ -->
   {
     project.impact && (
-      <section class="pimpact" data-theme="dark" style={`--tint:${project.tint}`}>
+      <section class="pimpact" data-theme="light" style={`--tint:${project.tint}`}>
         <div class="container-page">
           <p class="eyebrow reveal">Impact</p>
           <p class="pimpact__text reveal">{project.impact}</p>
@@ -126,7 +128,7 @@ const description = `${project.name} (${project.client}): ${project.tagline} ${p
   }
 
   <!-- ============ STACK ============ -->
-  <section class="pstack" data-theme="dark">
+  <section class="pstack" data-theme="light">
     <div class="container-page">
       <p class="eyebrow reveal">Stack</p>
       <ul class="pstack__chips reveal">
@@ -136,16 +138,33 @@ const description = `${project.name} (${project.client}): ${project.tagline} ${p
   </section>
 
   <!-- ============ PREV / NEXT ============ -->
-  <section class="pnav" data-theme="dark">
-    <div class="container-page pnav__grid">
-      <a href={`/projects/${prev.slug}/`} class="pnav__link pnav__link--prev" data-cursor>
-        <span class="pnav__dir">← Previous</span>
-        <span class="pnav__name">{prev.name}</span>
-      </a>
-      <a href={`/projects/${next.slug}/`} class="pnav__link pnav__link--next" data-cursor>
-        <span class="pnav__dir">Next →</span>
-        <span class="pnav__name">{next.name}</span>
-      </a>
+  <section class="pnav" data-theme="light" aria-label="More projects">
+    <div class="container-page">
+      <p class="eyebrow pnav__eyebrow">More projects</p>
+      <div class="pnav__grid">
+        <a
+          href={`/projects/${prev.slug}/`}
+          class="pnav__link pnav__link--prev"
+          style={`--tint:${prev.tint}`}
+        >
+          <span class="pnav__thumb"><Media src={prevImg} alt="" class="pnav__img" sizes="80px" /></span>
+          <span class="pnav__text">
+            <span class="pnav__dir"><span aria-hidden="true">←</span> Previous</span>
+            <span class="pnav__name">{prev.name}</span>
+          </span>
+        </a>
+        <a
+          href={`/projects/${next.slug}/`}
+          class="pnav__link pnav__link--next"
+          style={`--tint:${next.tint}`}
+        >
+          <span class="pnav__text">
+            <span class="pnav__dir">Next <span aria-hidden="true">→</span></span>
+            <span class="pnav__name">{next.name}</span>
+          </span>
+          <span class="pnav__thumb"><Media src={nextImg} alt="" class="pnav__img" sizes="80px" /></span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -223,11 +242,23 @@ const description = `${project.name} (${project.client}): ${project.tagline} ${p
   }
   .phero__media {
     justify-self: center;
-    width: min(62%, 240px);
+    width: min(72%, 300px);
+    aspect-ratio: 9 / 16;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--tint) 10%, #e7e6e3);
+  }
+  .phero__media :global(.phero__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
   }
   @media (min-width: 900px) {
     .phero__inner { grid-template-columns: 1.3fr 1fr; }
-    .phero__media { justify-self: end; width: min(100%, 260px); }
+    .phero__media { justify-self: end; width: min(100%, 340px); }
   }
 
   /* ---- Quick facts ---- */
@@ -290,10 +321,21 @@ const description = `${project.name} (${project.client}): ${project.tagline} ${p
   .pgallery__strip::-webkit-scrollbar { display: none; }
   .pgallery__item {
     flex: 0 0 auto;
-    width: clamp(180px, 40vw, 230px);
+    width: clamp(190px, 42vw, 250px);
+    aspect-ratio: 9 / 16;
     scroll-snap-align: center;
-    border-radius: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--tint) 8%, #e7e6e3);
     transition: transform 0.5s var(--ease-out-expo);
+  }
+  .pgallery__item :global(.pgallery__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
   }
   .pgallery__item:hover { transform: translateY(-6px); }
 
@@ -360,37 +402,68 @@ const description = `${project.name} (${project.client}): ${project.tagline} ${p
   }
 
   /* ---- Prev / next ---- */
-  .pnav { padding-block: clamp(2rem, 5vw, 4rem); }
+  .pnav { padding-block: clamp(2.5rem, 6vw, 5rem); }
+  .pnav__eyebrow { margin-bottom: 1.5rem; }
   .pnav__grid {
     display: grid;
-    gap: 1px;
-    background: var(--color-line);
-    border-block: 1px solid var(--color-line);
+    gap: 1rem;
+    grid-template-columns: 1fr;
   }
   .pnav__link {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 2rem 0.5rem;
-    background: var(--color-bg);
-    transition: background-color 0.4s;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 16px;
+    background: var(--color-bg-raised);
+    transition: border-color 0.4s, transform 0.4s var(--ease-out-expo), box-shadow 0.4s;
   }
-  .pnav__link--next { text-align: right; align-items: flex-end; }
-  .pnav__link:hover { background: var(--color-bg-raised); }
+  .pnav__link:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--tint) 50%, var(--color-line));
+    box-shadow: 0 20px 40px -26px color-mix(in srgb, var(--tint) 70%, black);
+  }
+  .pnav__link--next {
+    flex-direction: row;
+    text-align: right;
+    justify-content: flex-end;
+  }
+  .pnav__thumb {
+    flex: 0 0 auto;
+    width: 52px;
+    aspect-ratio: 9 / 16;
+    border-radius: 9px;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--tint) 10%, #e7e6e3);
+  }
+  .pnav__thumb :global(.pnav__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .pnav__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
   .pnav__dir {
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--color-ink-faint);
   }
   .pnav__name {
     font-family: var(--font-display);
-    font-size: clamp(1.4rem, 1rem + 2vw, 2.2rem);
+    font-size: clamp(1.15rem, 0.9rem + 1.2vw, 1.6rem);
     font-weight: 500;
+    letter-spacing: -0.02em;
   }
-  @media (min-width: 700px) {
+  @media (min-width: 640px) {
     .pnav__grid { grid-template-columns: 1fr 1fr; }
-    .pnav__link { padding: 2.5rem 1.5rem; }
   }
 
   /* ---- Lightbox ---- */

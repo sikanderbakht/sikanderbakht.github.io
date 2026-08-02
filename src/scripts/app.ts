@@ -1,8 +1,7 @@
 /**
- * Client entry: smooth scroll (Lenis) + GSAP scroll reveals, count-ups,
- * magnetic buttons + custom cursor. Persistent bits (Lenis, cursor) init once;
- * per-page bits re-run on Astro view transitions. Everything respects
- * prefers-reduced-motion and coarse pointers.
+ * Client entry: smooth scroll (Lenis) + subtle GSAP scroll reveals and metric
+ * count-ups. Per-page bits re-run on Astro view transitions. Everything
+ * respects prefers-reduced-motion.
  */
 import Lenis from "lenis";
 import { gsap } from "gsap";
@@ -11,7 +10,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
 document.documentElement.classList.remove("no-js");
 document.documentElement.classList.add("js-ready");
@@ -21,7 +19,7 @@ let lenis: Lenis | null = null;
 function initSmoothScroll() {
   if (reduceMotion || lenis) return;
   lenis = new Lenis({
-    duration: 1.1,
+    duration: 1.05,
     easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
   });
@@ -52,7 +50,6 @@ function initReveals() {
     els.forEach((el) => el.classList.add("is-in"));
     return;
   }
-  // stagger elements that share a parent
   const seen = new Map<Element, number>();
   els.forEach((el) => {
     const parent = el.parentElement;
@@ -76,8 +73,7 @@ function initCountups() {
     if (el.dataset.counted) return;
     const raw = (el.textContent || "").trim();
     const m = raw.match(/^([\d.]+)(.*)$/s);
-    // skip non-countable values (e.g. "40→2 min")
-    if (!m || raw.includes("→")) return;
+    if (!m || raw.includes("→")) return; // skip non-countable values
     el.dataset.counted = "1";
     if (reduceMotion) return;
 
@@ -92,7 +88,7 @@ function initCountups() {
       onEnter: () => {
         gsap.to(obj, {
           v: target,
-          duration: 1.4,
+          duration: 1.3,
           ease: "power2.out",
           onUpdate: () => {
             el.textContent = obj.v.toFixed(decimals) + suffix;
@@ -103,64 +99,11 @@ function initCountups() {
   });
 }
 
-/* ---------- Magnetic buttons (per page) ---------- */
-function initMagnetic() {
-  if (reduceMotion || coarsePointer) return;
-  gsap.utils.toArray<HTMLElement>(".btn, [data-magnetic]").forEach((el) => {
-    if (el.dataset.magneticBound) return;
-    el.dataset.magneticBound = "1";
-    const xTo = gsap.quickTo(el, "x", { duration: 0.5, ease: "power3" });
-    const yTo = gsap.quickTo(el, "y", { duration: 0.5, ease: "power3" });
-    el.addEventListener("pointermove", (e) => {
-      const r = el.getBoundingClientRect();
-      xTo((e.clientX - (r.left + r.width / 2)) * 0.3);
-      yTo((e.clientY - (r.top + r.height / 2)) * 0.3);
-    });
-    el.addEventListener("pointerleave", () => {
-      xTo(0);
-      yTo(0);
-    });
-  });
-}
-
-/* ---------- Custom cursor ---------- */
-let cursorReady = false;
-function initCursor() {
-  if (reduceMotion || coarsePointer) return;
-  const dot = document.querySelector<HTMLElement>(".cursor-dot");
-  const ring = document.querySelector<HTMLElement>(".cursor-ring");
-  if (!dot || !ring) return;
-
-  if (!cursorReady) {
-    const dotX = gsap.quickTo(dot, "x", { duration: 0.15, ease: "power3" });
-    const dotY = gsap.quickTo(dot, "y", { duration: 0.15, ease: "power3" });
-    const ringX = gsap.quickTo(ring, "x", { duration: 0.4, ease: "power3" });
-    const ringY = gsap.quickTo(ring, "y", { duration: 0.4, ease: "power3" });
-    window.addEventListener("pointermove", (e) => {
-      dotX(e.clientX);
-      dotY(e.clientY);
-      ringX(e.clientX);
-      ringY(e.clientY);
-    });
-    cursorReady = true;
-  }
-
-  // (re)bind hover growth to interactive elements on the current page
-  document.querySelectorAll("a, button, [data-cursor]").forEach((el) => {
-    if ((el as HTMLElement).dataset.cursorBound) return;
-    (el as HTMLElement).dataset.cursorBound = "1";
-    el.addEventListener("pointerenter", () => ring.classList.add("is-hover"));
-    el.addEventListener("pointerleave", () => ring.classList.remove("is-hover"));
-  });
-}
-
 /* ---------- Boot ---------- */
 function initPage() {
   bindAnchors();
   initReveals();
   initCountups();
-  initMagnetic();
-  initCursor();
 }
 
 function boot() {
@@ -171,7 +114,6 @@ function boot() {
 if (document.readyState !== "loading") boot();
 else document.addEventListener("DOMContentLoaded", boot);
 
-// After a view transition the DOM is fresh: clear stale triggers, re-init.
 document.addEventListener("astro:page-load", () => {
   ScrollTrigger.getAll().forEach((t) => t.kill());
   initPage();

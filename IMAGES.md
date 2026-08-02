@@ -21,15 +21,15 @@ Aim for a cover + at least 2–3 shots per project, ≥720px wide.
 
 | Project | Slug | Source | Replaced? |
 |---|---|---|---|
-| ENBD X | `enbdx` | ✅ real captures | ☑ done |
-| Emirates Islamic | `emirates-islamic` | generated | ☐ |
-| Liv | `liv` | generated | ☐ |
-| MB.io | `mbio` | generated | ☐ |
-| MultiBank Plus | `mbfx` | generated | ☐ |
-| MEX | `mex` | generated | ☐ |
+| ENBD X | `enbdx` | store listing | ☑ done (raw coming) |
+| Emirates Islamic | `emirates-islamic` | store listing | ☑ done (raw coming) |
+| Liv | `liv` | store listing | ☑ done (raw coming) |
+| MB.io | `mbio` | generated | ☐ (raw coming) |
+| MultiBank Plus | `mbfx` | generated | ☐ (raw coming) |
+| MEX | `mex` | generated | ☐ (raw coming) |
 | Edara | `edara` | generated | ☐ |
-| STC Pay | `stc-pay` | generated | ☐ |
-| Sadad | `sadad` | generated | ☐ |
+| STC Pay | `stc-pay` | store listing | ☑ done |
+| Sadad | `sadad` | store listing | ☑ done |
 | Hello | `hello-demo` | generated | ☐ |
 
 ### Regenerate placeholders

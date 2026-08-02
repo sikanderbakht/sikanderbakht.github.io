@@ -2,73 +2,72 @@
 import { person } from "../../data/profile";
 ---
 
-<section class="contact" data-theme="dark" id="contact" aria-labelledby="contact-title">
-  <div class="container-page">
-    <div class="contact__card reveal">
-      <p class="eyebrow">Contact</p>
-      <h2 id="contact-title" class="contact__title">
-        Have a hard mobile<br />problem? Let's talk.
-      </h2>
-      <p class="contact__sub">
-        Open to Mobile Lead roles and select consulting. Based in {person.location}.
-      </p>
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="container-page contact__inner">
+    <p class="eyebrow reveal">Contact</p>
 
-      <div class="contact__actions">
-        <a class="btn btn-primary" href={`mailto:${person.email}`} data-cursor>
-          {person.email}
-        </a>
-        <a class="btn btn-ghost" href={`tel:${person.phoneHref}`} data-cursor>
-          {person.phone}
-        </a>
-      </div>
+    <h2 id="contact-title" class="contact__title reveal">
+      Have a hard mobile<br />problem? <em class="serif">Let's talk.</em>
+    </h2>
 
-      <div class="contact__links">
-        <a href={person.linkedin} target="_blank" rel="noopener" data-cursor>LinkedIn ↗</a>
-        <a href={person.github} target="_blank" rel="noopener" data-cursor>GitHub ↗</a>
-      </div>
+    <a class="contact__email reveal" href={`mailto:${person.email}`}>
+      {person.email}
+    </a>
+
+    <p class="contact__avail reveal">
+      Open to Mobile Lead roles &amp; select consulting · Based in {person.location} (GST) ·
+      Usually replies within a day.
+    </p>
+
+    <div class="contact__links reveal">
+      <a href={person.linkedin} target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href={person.github} target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+      <a href={`tel:${person.phoneHref}`}>{person.phone}</a>
     </div>
   </div>
 </section>
 
 <style>
   .contact {
-    padding-block: clamp(3rem, 7vw, 6rem);
-    scroll-margin-top: 80px;
-  }
-  .contact__card {
-    position: relative;
-    padding: clamp(2rem, 5vw, 4.5rem);
-    border-radius: 28px;
-    border: 1px solid var(--color-line);
-    background:
-      radial-gradient(80% 120% at 100% 0%, var(--color-accent-soft), transparent 55%),
-      var(--color-bg-raised);
-    overflow: hidden;
+    padding-block: clamp(4rem, 10vw, 8rem) clamp(2rem, 5vw, 4rem);
   }
   .contact__title {
-    margin-top: 1rem;
-    font-size: var(--text-display);
-  }
-  .contact__sub {
     margin-top: 1.2rem;
-    max-width: 44ch;
-    color: var(--color-ink-soft);
+    font-size: var(--text-display);
+    line-height: 1.02;
   }
-  .contact__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    margin-top: 2.2rem;
+  .contact__email {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.4rem, 1rem + 2.6vw, 3rem);
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    background-image: linear-gradient(var(--color-ink), var(--color-ink));
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out-expo);
+  }
+  .contact__email:hover {
+    background-size: 100% 1.5px;
+  }
+  .contact__avail {
+    max-width: 52ch;
+    margin-top: 1.6rem;
+    color: var(--color-ink-soft);
+    font-size: 1rem;
   }
   .contact__links {
     display: flex;
+    flex-wrap: wrap;
     gap: 1.5rem;
     margin-top: 2rem;
-    font-family: var(--font-sans);
-    font-size: 0.82rem;
-    color: var(--color-ink-soft);
   }
   .contact__links a {
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
     transition: color 0.3s;
   }
   .contact__links a:hover {

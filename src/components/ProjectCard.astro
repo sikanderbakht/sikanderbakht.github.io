@@ -1,5 +1,5 @@
 ---
-import PhoneFrame from "./PhoneFrame.astro";
+import Media from "./Media.astro";
 import { projectImage } from "../lib/images";
 import type { Project } from "../data/projects";
 
@@ -15,85 +15,69 @@ const href = `/projects/${project.slug}/`;
 
 <a
   href={href}
-  class:list={["pcard", { "pcard--featured": project.featured }]}
+  class="pcard reveal"
   style={`--tint:${project.tint}`}
   data-category={project.category}
   data-cursor
   aria-label={`${project.name} — ${project.tagline}`}
 >
   <div class="pcard__media" transition:name={`cover-${project.slug}`}>
-    <PhoneFrame src={img} alt={cover.alt} width={project.featured ? 340 : 280} />
+    <Media src={img} alt={cover.alt} class="pcard__img" />
   </div>
 
-  <div class="pcard__body">
-    <div class="pcard__head">
-      <span class="pcard__name">{project.name}</span>
+  <div class="pcard__foot">
+    <div class="pcard__row">
+      <h3 class="pcard__name">{project.name}</h3>
       <span class="pcard__arrow" aria-hidden="true">↗</span>
     </div>
     <p class="pcard__tagline">{project.tagline}</p>
     <div class="pcard__meta">
-      <span class="chip pcard__chip">{project.stack}</span>
-      <span class="chip">{project.category}</span>
+      <span class="pcard__tag">{project.stack}</span>
+      <span class="pcard__dot" aria-hidden="true">·</span>
+      <span class="pcard__tag">{project.category}</span>
     </div>
-    <span class="pcard__explore">Explore project <span aria-hidden="true">→</span></span>
   </div>
 </a>
 
 <style>
   .pcard {
-    position: relative;
     display: flex;
     flex-direction: column;
-    padding: 1.4rem 1.4rem 1.6rem;
-    border-radius: var(--radius-card);
-    background: var(--color-bg-raised);
-    border: 1px solid var(--color-line);
-    overflow: hidden;
-    transition: transform 0.5s var(--ease-out-expo), border-color 0.4s, box-shadow 0.5s;
-    will-change: transform;
+    color: inherit;
   }
-  /* tint wash */
-  .pcard::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(120% 80% at 50% -10%, color-mix(in srgb, var(--tint) 26%, transparent), transparent 60%);
-    opacity: 0.6;
-    transition: opacity 0.5s;
-    pointer-events: none;
-  }
-  .pcard:hover {
-    transform: translateY(-6px);
-    border-color: color-mix(in srgb, var(--tint) 45%, var(--color-line));
-    box-shadow: 0 30px 60px -28px color-mix(in srgb, var(--tint) 55%, black);
-  }
-  .pcard:hover::before {
-    opacity: 1;
-  }
-  .pcard:hover :global(.phone__screen img) {
-    transform: translateY(-7%) scale(1.04);
-  }
-
   .pcard__media {
     position: relative;
-    display: flex;
-    justify-content: center;
-    padding-block: 0.5rem 1.4rem;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--tint) 9%, #e7e6e3);
+    border: 1px solid var(--color-line);
+    transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s;
   }
-  .pcard__media :global(.phone) {
-    width: min(58%, 220px);
+  .pcard:hover .pcard__media {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 50px -26px color-mix(in srgb, var(--tint) 60%, black);
+  }
+  .pcard__media :global(.pcard__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
   }
 
-  .pcard__head {
+  .pcard__foot {
+    padding: 1rem 0.2rem 0;
+  }
+  .pcard__row {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
   }
   .pcard__name {
-    font-family: var(--font-display);
-    font-weight: 600;
     font-size: 1.35rem;
+    font-weight: 500;
     letter-spacing: -0.02em;
   }
   .pcard__arrow {
@@ -102,70 +86,25 @@ const href = `/projects/${project.slug}/`;
   }
   .pcard:hover .pcard__arrow {
     transform: translate(3px, -3px);
-    color: var(--tint);
+    color: var(--color-ink);
   }
   .pcard__tagline {
-    margin-top: 0.4rem;
+    margin-top: 0.3rem;
     color: var(--color-ink-soft);
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.45;
   }
   .pcard__meta {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.1rem;
-  }
-  .pcard__chip {
-    border-color: color-mix(in srgb, var(--tint) 40%, var(--color-line));
-    color: var(--color-ink);
-  }
-  .pcard__explore {
-    display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    margin-top: 1.2rem;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--color-ink-soft);
+    color: var(--color-ink-faint);
   }
-  .pcard__explore span {
-    transition: transform 0.4s var(--ease-out-expo);
-  }
-  .pcard:hover .pcard__explore {
-    color: var(--color-ink);
-  }
-  .pcard:hover .pcard__explore span {
-    transform: translateX(4px);
-  }
-
-  /* Featured cards: wider media, span 2 cols on desktop */
-  @media (min-width: 900px) {
-    .pcard--featured {
-      grid-column: span 2;
-      flex-direction: row;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-    .pcard--featured .pcard__media {
-      flex: 0 0 42%;
-      padding: 0;
-    }
-    .pcard--featured .pcard__media :global(.phone) {
-      width: min(70%, 260px);
-    }
-    .pcard--featured .pcard__body {
-      flex: 1;
-    }
-    .pcard--featured .pcard__name {
-      font-size: 1.9rem;
-    }
-    .pcard--featured .pcard__tagline {
-      font-size: 1.05rem;
-      max-width: 34ch;
-    }
+  .pcard__dot {
+    opacity: 0.6;
   }
 </style>

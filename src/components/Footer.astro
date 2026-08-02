@@ -1,85 +1,135 @@
 ---
+import { person } from "../data/profile";
 const year = new Date().getFullYear();
-const socials = [
-  { href: "mailto:sikander.bin.ismail@gmail.com", label: "Email" },
-  { href: "https://www.linkedin.com/in/sikander-bakht-410b4a97", label: "LinkedIn" },
-  { href: "https://github.com/sikanderbakht", label: "GitHub" },
+
+const navigate = [
+  { href: "/#work", label: "Work" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#contact", label: "Contact" },
+];
+const connect = [
+  { href: person.linkedin, label: "LinkedIn", ext: true },
+  { href: person.github, label: "GitHub", ext: true },
+  { href: `mailto:${person.email}`, label: "Email", ext: false },
 ];
 ---
 
-<footer class="site-footer" data-theme="dark">
+<footer class="site-footer">
   <div class="container-page">
     <div class="site-footer__top">
-      <a href="/#contact" class="site-footer__cta">
-        <span class="eyebrow">Available for select work</span>
-        <span class="site-footer__headline">Let's build something<br />worth shipping.</span>
-      </a>
-      <nav class="site-footer__links" aria-label="Social">
-        {socials.map((s) => (
-          <a href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener">
-            {s.label}
-            <span aria-hidden="true">↗</span>
-          </a>
-        ))}
+      <div class="site-footer__brand">
+        <a href="/#intro" class="site-footer__name">Sikander Bakht</a>
+        <p class="site-footer__blurb">
+          Mobile Lead building secure, high-scale Android &amp; React Native apps
+          for fintech and digital banking.
+        </p>
+      </div>
+
+      <nav class="site-footer__cols" aria-label="Footer">
+        <div class="site-footer__col">
+          <h2>Navigate</h2>
+          {navigate.map((l) => <a href={l.href}>{l.label}</a>)}
+        </div>
+        <div class="site-footer__col">
+          <h2>Connect</h2>
+          {
+            connect.map((l) => (
+              <a href={l.href} target={l.ext ? "_blank" : undefined} rel={l.ext ? "noopener" : undefined}>
+                {l.label}
+              </a>
+            ))
+          }
+        </div>
       </nav>
     </div>
-    <div class="site-footer__bottom">
-      <span>© {year} Sikander Bakht — Mobile Lead, Dubai</span>
-      <span>Built with Astro</span>
+
+    <div class="site-footer__bar">
+      <span>© {year} Sikander Bakht</span>
+      <span>{person.location}</span>
+      <a href="/#intro" class="site-footer__top-link">Back to top <span aria-hidden="true">↑</span></a>
     </div>
   </div>
 </footer>
 
 <style>
   .site-footer {
+    margin-top: clamp(3rem, 8vw, 6rem);
     border-top: 1px solid var(--color-line);
-    padding-block: clamp(3rem, 8vw, 6rem) 2rem;
-    margin-top: 6rem;
+    padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
   }
   .site-footer__top {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .site-footer__cta {
-    display: block;
-  }
-  .site-footer__headline {
-    display: block;
-    margin-top: 1rem;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: var(--text-display);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
-  }
-  .site-footer__links {
     display: grid;
-    gap: 0.4rem;
-    min-width: 12rem;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
   }
-  .site-footer__links a {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--color-line);
+  .site-footer__name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+  }
+  .site-footer__blurb {
+    margin-top: 0.9rem;
+    max-width: 34ch;
     color: var(--color-ink-soft);
-    transition: color 0.3s, padding-left 0.3s var(--ease-out-expo);
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
-  .site-footer__links a:hover {
+  .site-footer__cols {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .site-footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .site-footer__col h2 {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+    margin-bottom: 0.3rem;
+  }
+  .site-footer__col a {
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    width: fit-content;
+    transition: color 0.3s;
+  }
+  .site-footer__col a:hover {
     color: var(--color-ink);
-    padding-left: 0.4rem;
   }
-  .site-footer__bottom {
+  .site-footer__bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1rem 2rem;
     justify-content: space-between;
-    margin-top: clamp(3rem, 8vw, 6rem);
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
+    align-items: center;
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-line);
+    font-size: 0.8rem;
     color: var(--color-ink-faint);
+  }
+  .site-footer__top-link {
+    color: var(--color-ink-soft);
+    transition: color 0.3s;
+  }
+  .site-footer__top-link:hover {
+    color: var(--color-ink);
+  }
+  @media (min-width: 720px) {
+    .site-footer__top {
+      grid-template-columns: 1.4fr 1fr;
+      gap: 4rem;
+    }
+    .site-footer__cols {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 </style>
