@@ -87,61 +87,51 @@ export interface SkillGroup {
   items: string[];
 }
 
+export interface SkillDomain {
+  title: string;
+  lead: string;
+  items: string[];
+}
+
 export const skillGroups: SkillGroup[] = [
   {
     title: "Platforms",
-    items: [
-      "Android (Kotlin/Java)",
-      "React Native",
-      "iOS (Swift)",
-      "Flutter",
-      "Kotlin Multiplatform",
-      "Jetpack Compose",
-    ],
+    items: ["Android", "Kotlin", "Java", "React Native", "TypeScript", "iOS (Swift)", "Flutter", "Kotlin Multiplatform", "Jetpack Compose"],
   },
   {
     title: "Architecture",
-    items: [
-      "Clean Architecture",
-      "MVVM",
-      "Modularization",
-      "Atomic Design",
-      "Monorepo",
-      "Server-driven UI",
-    ],
+    items: ["Clean Architecture", "MVVM", "Modularization", "Atomic Design", "Monorepo", "Server-driven UI"],
   },
   {
     title: "State & Data",
-    items: [
-      "Coroutines / Flow",
-      "Redux Toolkit",
-      "RTK Query",
-      "Zustand",
-      "Retrofit / Room",
-      "REST · GraphQL · WebSockets",
-    ],
+    items: ["Coroutines", "Flow", "Redux Toolkit", "RTK Query", "Zustand", "Retrofit", "Room", "REST", "GraphQL", "WebSockets"],
   },
   {
     title: "Quality & CI",
-    items: [
-      "TDD",
-      "JUnit · Espresso",
-      "Jest",
-      "Appium · WebdriverIO",
-      "GitHub Actions · Fastlane",
-      "Sentry · Crashlytics",
-    ],
+    items: ["TDD", "JUnit", "Espresso", "Jest", "Appium", "WebdriverIO", "GitHub Actions", "Fastlane", "Sentry", "Crashlytics"],
   },
   {
     title: "AI & Workflow",
-    items: [
-      "Claude Code skills / subagents",
-      "AI-assisted test generation",
-      "AI code review",
-      "Atomic design systems",
-      "Spec / plan-first delivery",
-      "MCP integrations",
-    ],
+    items: ["Claude Code skills", "AI test generation", "AI code review", "Spec-first delivery", "MCP integrations"],
+  },
+];
+
+// Featured domains shown prominently at the top of the Skills section.
+export const skillDomains: SkillDomain[] = [
+  {
+    title: "Native Android",
+    lead: "Kotlin & Java",
+    items: ["Jetpack Compose", "Coroutines / Flow", "Hilt", "MVVM", "Clean Architecture"],
+  },
+  {
+    title: "React Native",
+    lead: "TypeScript",
+    items: ["Redux Toolkit", "RTK Query", "React Navigation", "Native modules", "Atomic design"],
+  },
+  {
+    title: "Cross-platform",
+    lead: "iOS · Flutter · KMP",
+    items: ["Swift basics", "Flutter", "Kotlin Multiplatform", "Shared design systems"],
   },
 ];
 

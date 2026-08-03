@@ -17,9 +17,26 @@ import { person, metrics, clients } from "../../data/profile";
 
     <div class="hero__cta reveal">
       <a href="/#work" class="btn btn-primary">View work</a>
-      <a href="/#contact" class="btn btn-ghost">Get in touch</a>
-      <a href={person.cv} target="_blank" rel="noopener" class="hero__link">Résumé ↗</a>
-      <a href={person.linkedin} target="_blank" rel="noopener" class="hero__link">LinkedIn ↗</a>
+
+      <a href={person.cv} target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" />
+        </svg>
+        Résumé
+      </a>
+
+      <span class="hero__social">
+        <a href={person.linkedin} target="_blank" rel="noopener" class="hero__icon" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V9.9H5.67v8.44h2.67zM7 8.67a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zm11.34 9.67v-4.63c0-2.47-1.32-3.62-3.08-3.62-1.42 0-2.06.78-2.41 1.33v-1.14h-2.67c.04.75 0 8.44 0 8.44h2.67v-4.71c0-.24.02-.48.09-.65.19-.48.63-.98 1.36-.98.96 0 1.35.73 1.35 1.8v4.54h2.67z" />
+          </svg>
+        </a>
+        <a href={person.github} target="_blank" rel="noopener" class="hero__icon" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z" />
+          </svg>
+        </a>
+      </span>
     </div>
 
     <dl class="hero__stats">
@@ -70,13 +87,26 @@ import { person, metrics, clients } from "../../data/profile";
     gap: 0.9rem 1.4rem;
     margin-top: 2.4rem;
   }
-  .hero__link {
-    font-size: 0.95rem;
-    color: var(--color-ink-soft);
-    transition: color 0.3s;
+  .hero__social {
+    display: inline-flex;
+    gap: 0.6rem;
+    margin-left: 0.4rem;
   }
-  .hero__link:hover {
+  .hero__icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    border: 1px solid var(--color-line-strong);
     color: var(--color-ink);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s var(--ease-out-expo);
+  }
+  .hero__icon:hover {
+    background: var(--color-ink);
+    color: var(--color-bg);
+    border-color: var(--color-ink);
+    transform: translateY(-2px);
   }
 
   .hero__stats {

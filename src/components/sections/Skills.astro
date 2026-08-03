@@ -1,5 +1,6 @@
 ---
-import { skillGroups } from "../../data/profile";
+import { skillGroups, skillDomains } from "../../data/profile";
+const rows = skillGroups.filter((g) => g.title !== "Platforms");
 ---
 
 <section class="skills" id="skills" aria-labelledby="skills-title">
@@ -8,22 +9,35 @@ import { skillGroups } from "../../data/profile";
       <p class="eyebrow">Toolkit</p>
       <h2 id="skills-title" class="skills__title">Skills &amp; stack</h2>
       <p class="skills__intro">
-        Primarily <strong>Android</strong> and <strong>React Native</strong> — with
-        iOS, Flutter and Kotlin Multiplatform in the toolkit — plus the
-        architecture, testing and AI-assisted workflow to ship them reliably.
+        I work primarily across <strong>native Android</strong> and
+        <strong>React Native</strong>, with iOS, Flutter and Kotlin Multiplatform
+        in the toolkit — backed by the architecture, testing and AI-assisted
+        workflow to ship them reliably.
       </p>
+    </div>
+
+    <div class="skills__domains">
+      {
+        skillDomains.map((d) => (
+          <article class="skills__card reveal">
+            <h3 class="skills__card-title">{d.title}</h3>
+            <p class="skills__card-lead">{d.lead}</p>
+            <ul class="skills__card-list">
+              {d.items.map((i) => (
+                <li>{i}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
     </div>
 
     <dl class="skills__rows">
       {
-        skillGroups.map((g) => (
+        rows.map((g) => (
           <div class="skills__row reveal">
             <dt class="skills__cat">{g.title}</dt>
-            <dd class="skills__items">
-              {g.items.map((s) => (
-                <span class="skills__tag">{s}</span>
-              ))}
-            </dd>
+            <dd class="skills__line">{g.items.join("   ·   ")}</dd>
           </div>
         ))
       }
@@ -37,8 +51,8 @@ import { skillGroups } from "../../data/profile";
     scroll-margin-top: 80px;
   }
   .skills__head {
-    max-width: 44rem;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    max-width: 46rem;
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
   }
   .skills__title {
     margin-top: 0.9rem;
@@ -55,6 +69,52 @@ import { skillGroups } from "../../data/profile";
     font-weight: 600;
   }
 
+  /* Featured platform cards */
+  .skills__domains {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .skills__card {
+    padding: 1.6rem;
+    border: 1px solid var(--color-line);
+    border-radius: 16px;
+    background: var(--color-bg-raised);
+  }
+  .skills__card-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .skills__card-lead {
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .skills__card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+    list-style: none;
+    margin: 1.2rem 0 0;
+    padding: 0;
+  }
+  .skills__card-list li {
+    position: relative;
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
+  }
+  .skills__card-list li:not(:last-child)::after {
+    content: "·";
+    position: absolute;
+    right: -0.55rem;
+    color: var(--color-ink-faint);
+  }
+
+  /* Supporting toolkit rows */
   .skills__rows {
     margin: 0;
     border-top: 1px solid var(--color-line);
@@ -62,40 +122,34 @@ import { skillGroups } from "../../data/profile";
   .skills__row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.9rem;
-    padding-block: clamp(1.4rem, 3vw, 2rem);
+    gap: 0.5rem;
+    padding-block: clamp(1.3rem, 2.6vw, 1.8rem);
     border-bottom: 1px solid var(--color-line);
   }
   .skills__cat {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 1.15rem;
-    letter-spacing: -0.01em;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
   }
-  .skills__items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .skills__line {
     margin: 0;
-  }
-  .skills__tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.4rem 0.85rem;
-    border-radius: 999px;
-    border: 1px solid var(--color-line);
-    background: var(--color-bg-raised);
-    font-size: 0.85rem;
+    font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.35rem);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
     color: var(--color-ink);
-    transition: border-color 0.3s, transform 0.3s var(--ease-out-expo);
-  }
-  .skills__tag:hover {
-    border-color: var(--color-ink);
   }
 
+  @media (min-width: 720px) {
+    .skills__domains {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+  }
   @media (min-width: 780px) {
     .skills__row {
-      grid-template-columns: 15rem 1fr;
+      grid-template-columns: 12rem 1fr;
       gap: 2.5rem;
       align-items: baseline;
     }
