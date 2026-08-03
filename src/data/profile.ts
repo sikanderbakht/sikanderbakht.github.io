@@ -11,6 +11,7 @@ export const person = {
   phoneHref: "+971505852690",
   linkedin: "https://www.linkedin.com/in/sikander-bakht-410b4a97",
   github: "https://github.com/sikanderbakht",
+  cv: "/sikander-bakht-cv.pdf",
 };
 
 export const metrics = [
