@@ -7,15 +7,8 @@ const filters = ["All", ...categories];
 <section class="work" data-theme="light" id="work" aria-labelledby="work-title">
   <div class="container-page">
     <div class="work__head reveal">
-      <div>
-        <p class="eyebrow">Selected work</p>
-        <h2 id="work-title" class="work__title">Apps I've led &amp; shipped</h2>
-      </div>
-      <p class="work__intro">
-        Ten mobile products across banking, trading and payments — built with
-        Android &amp; React Native, most serving millions of users in regulated
-        markets.
-      </p>
+      <p class="eyebrow">Selected work</p>
+      <h2 id="work-title" class="work__title">Apps I've led &amp; shipped</h2>
     </div>
 
     <div class="work__filters" role="group" aria-label="Filter projects by category">
@@ -45,21 +38,11 @@ const filters = ["All", ...categories];
     scroll-margin-top: 80px;
   }
   .work__head {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem 3rem;
-    justify-content: space-between;
-    align-items: flex-end;
     margin-bottom: 2rem;
   }
   .work__title {
     margin-top: 0.9rem;
     font-size: var(--text-display);
-  }
-  .work__intro {
-    max-width: 32ch;
-    color: var(--color-ink-soft);
-    font-size: 0.98rem;
   }
   .work__filters {
     display: flex;
